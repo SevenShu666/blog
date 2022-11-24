@@ -1,4 +1,5 @@
 module.exports = {
+  base: "/blog/",
   title: "小草屋",
   description: "藏点书",
   themeConfig: {
