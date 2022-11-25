@@ -3,6 +3,7 @@ module.exports = {
   title: "小草屋",
   description: "藏点书",
   themeConfig: {
+    logo: "/logo.jpg",
     nav: [
       { text: "主页", link: "/" },
       {
@@ -15,6 +16,7 @@ module.exports = {
       },
       { text: "node", link: "/node/" },
       { text: "算法", link: "/arithmetic/" },
+      { text: "MD", link: "/markDown/" },
     ],
     sidebar: {
       "/web/html/": [
@@ -22,6 +24,9 @@ module.exports = {
         ["one", "第二个"],
         ["two", "第三个"],
       ],
+      "/markDown/": "auto",
     },
+    search: true,
+    searchMaxSuggestions: 10,
   },
 };
