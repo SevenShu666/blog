@@ -3,7 +3,6 @@ module.exports = {
   title: "小草屋",
   description: "藏点书",
   themeConfig: {
-    logo: "/logo.jpg",
     nav: [
       { text: "主页", link: "/" },
       {

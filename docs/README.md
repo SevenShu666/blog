@@ -1,16 +1,16 @@
 ---
 home: true
 heroImage: /home.jpg
-heroText: Hero 标题
-tagline: Hero 副标题
-actionText: 快速上手 →
-actionLink: /zh/guide/
+heroText: 欢迎来到小草屋
+tagline: 欲买桂花同载酒，终不似，少年游
+actionText: 学习
+actionLink: /web/html/
 features:
-  - title: 简洁至上
-    details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-  - title: Vue驱动
-    details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-  - title: 高性能
-    details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
-footer: MIT Licensed | Copyright © 2018-present Evan You
+  - title: day day up
+    details: 每天添一块砖，每天添一块瓦，搭一个遮风挡雨的小草屋
+  - title: 藏书阁
+    details: 放一些已学和未学的书，时时温故，然后知新
+  - title: 箴言
+    details: 走慢一点也不要停下脚步
+footer: 小草屋
 ---
