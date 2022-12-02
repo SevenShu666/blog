@@ -11,6 +11,6 @@ features:
   - title: 藏书阁
     details: 放一些已学和未学的书，时时温故，然后知新
   - title: 箴言
-    details: 走慢一点也不要停下脚步
+    details: 可以走慢一点，但不要停下脚步
 footer: 小草屋
 ---
