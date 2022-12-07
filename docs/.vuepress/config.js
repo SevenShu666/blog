@@ -10,6 +10,7 @@ module.exports = {
       { text: "node", link: "/node/" },
       { text: "算法", link: "/arithmetic/" },
       { text: "MD", link: "/markDown/" },
+      { text: "git操作", link: "/gitOperate/" },
     ],
     sidebar: {
       "/web/": [
@@ -36,14 +37,8 @@ module.exports = {
           title: "",
         },
       ],
-      "/markDown/": [
-        {
-          title: "",
-          collapsable: false,
-          sidebarDepth: 2,
-          children: [""],
-        },
-      ],
+      "/markDown/": "auto",
+      "/gitOperate/": "auto",
     },
     lastUpdated: "Last Updated",
     smoothScroll: true,

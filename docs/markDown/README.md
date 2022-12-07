@@ -155,7 +155,7 @@ $$;
 
 ## **软件安装**
 
-官网下载：[https://www.typora.io/windows/typora-setup-x64.exe](https://link.zhihu.com/?target=https%3A//www.typora.io/windows/typora-setup-x64.exe)
+官网下载：[https://www.typoraio.cn/](https://www.typoraio.cn/)
 
 ### **在 Typora 中书写 MarkDown**
 
