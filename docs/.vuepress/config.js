@@ -19,11 +19,7 @@ module.exports = {
           // path: "/web/html/", // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           collapsable: false, // 可选的, 默认值是 true,控制子组是否折叠
           sidebarDepth: 2, // 可选的, 默认值是 1,
-          children: [
-            ["html/", "第一个"],
-            ["html/one", "第二个"],
-            ["html/two", "第三个"],
-          ],
+          children: ["html/"],
         },
         {
           title: "",
@@ -35,6 +31,9 @@ module.exports = {
       "/node/": [
         {
           title: "",
+          collapsable: false,
+          sidebarDepth: 2,
+          children: [],
         },
       ],
       "/markDown/": "auto",
