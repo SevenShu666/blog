@@ -27,13 +27,19 @@ module.exports = {
           sidebarDepth: 2,
           children: ["css/"],
         },
+        {
+          title: "",
+          collapsable: false,
+          sidebarDepth: 2,
+          children: ["js/"],
+        },
       ],
       "/node/": [
         {
           title: "",
           collapsable: false,
           sidebarDepth: 2,
-          children: [],
+          children: [""],
         },
       ],
       "/markDown/": "auto",
