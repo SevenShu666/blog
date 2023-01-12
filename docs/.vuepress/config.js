@@ -41,6 +41,12 @@ module.exports = {
           sidebarDepth: 2,
           children: [""],
         },
+        {
+          title: "",
+          collapsable: false,
+          sidebarDepth: 2,
+          children: ["decorator"],
+        },
       ],
       "/markDown/": "auto",
       "/gitOperate/": "auto",
