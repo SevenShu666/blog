@@ -340,3 +340,7 @@ git push origin --delete Chapater6
 ```shell
 git branch -d  Chapater6
 ```
+
+## 回退版本
+
+git reset --hard 目标版本号

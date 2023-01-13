@@ -1,0 +1,67 @@
+# 第二章 nestjs cli
+
+## 安装@nestjs/cli 创建项目
+
+```javascript
+npm i -g @nestjs/cli
+```
+
+```javascript
+nest new [项目名称]
+```
+
+## 目录介绍
+
+1.main.ts 入口文件
+
+通过 NestFactory.create(AppModuule)创建一个 app，app.listen(3000)监听一个窗口
+
+```javascript
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+2.Controller.ts 控制器
+
+前端请求到达这里，可以理解为路由
+
+```js
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+}
+```
+
+3.app.service.ts
+
+这个文件主要实现业务逻辑，业务逻辑放在这里可以复用
+
+```js
+import { Injectable } from "@nestjs/common";
+
+@Injectable()
+export class AppService {
+  getHello(): string {
+    return "Hello World!";
+  }
+}
+```
+
+## 常用命令
+
+nest --help 可以查看 nestjs 所有的命令
+![nestHelp](/blog/nestHelp.png)
