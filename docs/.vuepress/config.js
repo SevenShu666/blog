@@ -33,6 +33,12 @@ module.exports = {
           sidebarDepth: 2,
           children: ["js/"],
         },
+        {
+          title: "",
+          collapsable: false,
+          sidebarDepth: 2,
+          children: ["writeJs/"],
+        },
       ],
       "/node/": [
         {
