@@ -191,3 +191,4 @@ Typora 会自动帮你插入符合 Markdown 语法的图片语句，并给它添
 ## **支持 emoji 表情**
 
 在 Typora 中，使用 win 键+句号使用表情
+<Valine></Valine>

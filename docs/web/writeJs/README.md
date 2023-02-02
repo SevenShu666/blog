@@ -1,8 +1,8 @@
-# js手写
+# js 手写
 
 ## 一、节流防抖
 
-~~~js
+```js
 // 防抖
 function debounce(fn, delay, immediate) {
   let timer = null;
@@ -59,13 +59,13 @@ function throttle2(fn, delay) {
     }
   };
 }
-~~~
+```
 
 ## 二、函数柯里化
 
 函数柯里化是指将一个多个参数的函数转化成一系列使用一个参数的函数的技术
 
-~~~js
+```js
 function curry(fn, args) {
   const length = fn.length;
   args = args || [];
@@ -91,11 +91,11 @@ function curry2(fn, ...args) {
     ? fn(...args)
     : curry2.bind(null, fn, ...args);
 }
-~~~
+```
 
-## 三、解析URL
+## 三、解析 URL
 
-~~~js
+```js
 let url =
   "http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&enabled";
 
@@ -124,11 +124,11 @@ function parseParams(url) {
 }
 
 console.log(parseParams(url));
-~~~
+```
 
-## 四、每秒打印1、2、3、4
+## 四、每秒打印 1、2、3、4
 
-~~~js
+```js
 // 自执行函数
 for (var i = 1; i <= 4; i++) {
   (function (i) {
@@ -145,11 +145,11 @@ for (let i = 1; i <= 4; i++) {
     console.log(i);
   }, 1000);
 }
-~~~
+```
 
 ## 五、日期格式化
 
-~~~js
+```js
 function dateFormat(dateInput, format) {
   const year = dateInput.getFullYear();
   const month = dateInput.getMonth() + 1;
@@ -160,11 +160,11 @@ function dateFormat(dateInput, format) {
 }
 
 console.log(dateFormat(new Date("2020-12-01"), "yyyy/mm/dd"));
-~~~
+```
 
 ## 六、深浅拷贝方法
 
-~~~js
+```js
 /**
  * 浅拷贝的方法
  * 对象
@@ -241,11 +241,11 @@ obj2.list = [1, 2, 3];
 
 console.log(obj);
 console.log(obj2);
-~~~
+```
 
 ## 七、非负大整数相加
 
-~~~js
+```js
 function sumBigBumber(a, b) {
   let res = "";
   let temp = 0;
@@ -263,11 +263,11 @@ function sumBigBumber(a, b) {
 }
 
 console.log(sumBigBumber("19007199254740992", "9007199254740993"));
-~~~
+```
 
 ## 八、类数组转换成数组
 
-~~~js
+```js
 let arrayLike = new Set([1, 2, 3, 4]);
 
 // 调用数组的slice方法
@@ -281,11 +281,11 @@ arrayLike = Array.prototype.concat.apply([], arrayLike);
 
 // 调用Array.from方法
 arrayLike = Array.from(arrayLike);
-~~~
+```
 
 ## 九、数组的乱序输出
 
-~~~js
+```js
 const arr = [1, 2, 3, 4, 5];
 
 // 正序
@@ -307,11 +307,11 @@ while (length) {
 }
 
 console.log(obj);
-~~~
+```
 
-## 十、数组的filter方法
+## 十、数组的 filter 方法
 
-~~~js
+```js
 const arr = [1, 2, 3, 4, 5, 6];
 
 Array.prototype.myFilter = function (fn) {
@@ -334,11 +334,11 @@ console.log(
     return a >= 3;
   })
 );
-~~~
+```
 
-## 十一、数组的map方法
+## 十一、数组的 map 方法
 
-~~~js
+```js
 const arr = [1, 2, 3, 4, 5, 6];
 
 Array.prototype.myMap = function (fn, thisValue) {
@@ -359,11 +359,11 @@ console.log(
     return item + 1;
   })
 );
-~~~
+```
 
-## 十二、数组的push方法
+## 十二、数组的 push 方法
 
-~~~js
+```js
 const arr = [1, 2];
 
 Array.prototype.myPush = function () {
@@ -375,11 +375,11 @@ Array.prototype.myPush = function () {
 };
 
 console.log(arr.myPush(1));
-~~~
+```
 
-## 十三、字符串的repeat方法
+## 十三、字符串的 repeat 方法
 
-~~~js
+```js
 const s = "123";
 
 // join方法
@@ -393,11 +393,11 @@ function repeat2(s, n) {
 }
 
 console.log(repeat2(s, 2));
-~~~
+```
 
 ## 十四、字符串的翻转
 
-~~~js
+```js
 let str = "123";
 
 function strReverse(str) {
@@ -405,11 +405,11 @@ function strReverse(str) {
 }
 
 console.log(strReverse(str));
-~~~
+```
 
 ## 十五、add(1)(2)(3)方法
 
-~~~js
+```js
 function curry(fn) {
   let args = [];
 
@@ -432,11 +432,11 @@ function add(...args) {
 const addFn = curry(add);
 
 console.log(addFn(3)(2)(3)());
-~~~
+```
 
-## 十六、实现ajax请求
+## 十六、实现 ajax 请求
 
-~~~js
+```js
 const SERVER_URL = "./server";
 
 let xhr = new XMLHttpRequest();
@@ -461,11 +461,11 @@ xhr.responseType = "json";
 xhr.setRequestHeader("Accept", "application/json");
 // 发送 http 请求
 xhr.send(null);
-~~~
+```
 
-## 十七、flat方法
+## 十七、flat 方法
 
-~~~js
+```js
 function _flat(arr, depth) {
   if (!Array.isArray(arr) || depth <= 0) {
     return arr;
@@ -483,11 +483,11 @@ function _flat(arr, depth) {
 const arr = [1, [2, 3], 4, [5, [6, 7]]];
 
 console.log(_flat(arr, Infinity));
-~~~
+```
 
-## 十八、ES5和ES6求函数参数的和
+## 十八、ES5 和 ES6 求函数参数的和
 
-~~~js
+```js
 // ES5
 function sum1() {
   let sum = 0;
@@ -507,11 +507,11 @@ function sum2(...args) {
   return sum;
 }
 console.log(sum2(1, 2, 3, 4, 5));
-~~~
+```
 
-## 十九、使用Promise封装ajax请求
+## 十九、使用 Promise 封装 ajax 请求
 
-~~~js
+```js
 function getJSON(url) {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
@@ -539,11 +539,11 @@ function getJSON(url) {
     xhr.send(null);
   });
 }
-~~~
+```
 
 ## 二十、事件总线
 
-~~~js
+```js
 class EventEmitter {
   constructor() {
     this.cache = {};
@@ -597,11 +597,11 @@ eventBus.on("aaa", fn1);
 eventBus.on("aaa", fn2);
 // eventBus.off("aaa", fn2);
 eventBus.emit("aaa", false, "anna", 20);
-~~~
+```
 
 ## 二十一、数字每千分位用逗号隔开
 
-~~~js
+```js
 function format(n) {
   let num = n.toString();
   let point = num.indexOf(".");
@@ -632,11 +632,11 @@ function format(n) {
 }
 
 console.log(format(111222333));
-~~~
+```
 
 ## 二十二、数组扁平化方法
 
-~~~js
+```js
 const arr = [1, [2, 3], 4, [5, [6, 7]]];
 
 // 递归实现
@@ -684,11 +684,11 @@ function flatten5(arr) {
 }
 
 console.log(flatten5(arr));
-~~~
+```
 
 ## 二十三、数组求和方法
 
-~~~js
+```js
 const arr = [1, [2, 3], [4, 5, [6]]];
 
 const sum = arr
@@ -702,11 +702,11 @@ function add(arr) {
 }
 
 console.log(add([1, 2, 3, 4, 5]));
-~~~
+```
 
 ## 二十四、数组去重的方法
 
-~~~js
+```js
 const arr = [1, 2, 3, 3, 3, 2, 2, 1, 4, 5, 4, 6];
 
 // Set方法
@@ -736,11 +736,11 @@ function uniqueArray3(arr) {
 }
 
 console.log(uniqueArray3(arr));
-~~~
+```
 
 ## 二十五、图片懒加载
 
-~~~js
+```js
 const imgList = document.getElementsByTagName("img");
 const length = imgList.length;
 let count = 0;
@@ -774,11 +774,11 @@ const imgLazyLoad = function () {
 };
 
 document.addEventListener("scroll", throttle(imgLazyLoad, 200));
-~~~
+```
 
 ## 二十六、循环打印红黄绿灯
 
-~~~js
+```js
 function red() {
   console.log("red");
 }
@@ -850,11 +850,11 @@ const step3 = async () => {
   await task3(1000, "green");
   step3();
 };
-~~~
+```
 
-## 二十七、a、b值的交换不用临时变量
+## 二十七、a、b 值的交换不用临时变量
 
-~~~js
+```js
 function exchange(a, b) {
   a = a + b;
   b = a - b;
@@ -862,11 +862,11 @@ function exchange(a, b) {
 
   return [a, b];
 }
-~~~
+```
 
-## 二十八、call、apply、bind方法
+## 二十八、call、apply、bind 方法
 
-~~~js
+```js
 Function.prototype.myCall = function (context, ...args) {
   if (typeof this !== "function") {
     throw new TypeError(this + " not a function");
@@ -910,11 +910,11 @@ Function.prototype.myBind = function (context, ...args) {
     return fn.myApply(context, args.concat(otherArgs));
   };
 };
-~~~
+```
 
-## 二十九、instanceof方法
+## 二十九、instanceof 方法
 
-~~~js
+```js
 function myInstanceof(left, right) {
   let proto = Object.getPrototypeOf(left);
   const prototype = right.prototype;
@@ -929,11 +929,11 @@ function myInstanceof(left, right) {
     proto = Object.getPrototypeOf(proto);
   }
 }
-~~~
+```
 
-## 三十、js对象转换成树形结构
+## 三十、js 对象转换成树形结构
 
-~~~js
+```js
 // 转换前：
 let source = [
   {
@@ -1002,11 +1002,11 @@ function jsonToTree(arr) {
 let a = jsonToTree(source);
 
 console.log(a[0].children);
-~~~
+```
 
 ## 三十一、JSONP
 
-~~~js
+```js
 const jsonp = function (url, params, callback) {
   let dataString = url + "?";
   for (const key in params) {
@@ -1025,11 +1025,11 @@ const jsonp = function (url, params, callback) {
   };
   document.body.appendChild(scriptEle);
 };
-~~~
+```
 
-## 三十二、new操作符
+## 三十二、new 操作符
 
-~~~js
+```js
 function newOperate(ctor) {
   if (typeof ctor !== "function") {
     throw new TypeError(ctor + " not a function");
@@ -1058,22 +1058,22 @@ function Person(name) {
 
 const child = newOperate(Person, "nami");
 console.log(child.name);
-~~~
+```
 
-## 三十三、Object.create方法
+## 三十三、Object.create 方法
 
-~~~js
+```js
 function create(obj) {
   function F() {}
   F.prototype = obj;
 
   return new F();
 }
-~~~
+```
 
 ## 三十四、Promise
 
-~~~js
+```js
 const PENDING = "PENDING";
 const FULFILLED = "FULLFILLED";
 const REJECTED = "REJECTED";
@@ -1271,11 +1271,11 @@ p3.then(
 ).finally(() => {
   console.log("finally");
 });
-~~~
+```
 
 ## 三十五、Promsie.allSettled
 
-~~~js
+```js
 Promise.allSettled = function (promiseArray) {
   return new Promise((resolve, reject) => {
     const result = [];
@@ -1337,11 +1337,11 @@ Promise.allSettled([p1, p2, p4])
 Promise.allSettled([p4, p5])
   .then((res) => console.log(res))
   .catch((err) => console.log(err));
-~~~
+```
 
 ## 三十六、Promise.any
 
-~~~js
+```js
 Promise.any = function (promiseArray) {
   return new Promise((resolve, reject) => {
     promiseArray = Array.isArray(promiseArray) ? promiseArray : [];
@@ -1364,11 +1364,11 @@ Promise.any = function (promiseArray) {
     });
   });
 };
-~~~
+```
 
-## 三十七、setTimeout模拟setInterval
+## 三十七、setTimeout 模拟 setInterval
 
-~~~js
+```js
 function mySetInterval(fn, delay) {
   const timer = {
     flag: true,
@@ -1387,11 +1387,11 @@ function mySetInterval(fn, delay) {
 }
 
 mySetInterval(() => console.log("1111"), 1000);
-~~~
+```
 
-## 三十八、splice方法
+## 三十八、splice 方法
 
-~~~js
+```js
 /**
  * 1.将删除的元素拷贝出来，用以返回
  * 2.移动删除元素的后面的元素，分三种情况，
@@ -1502,11 +1502,11 @@ Array.prototype.splice = function (startIndex, deleteCount, ...addElements) {
 
   return deleteArr;
 };
-~~~
+```
 
-## 三十九、typeof方法
+## 三十九、typeof 方法
 
-~~~js
+```js
 function myTypeof(value) {
   const valueClass = Object.prototype.toString.call(value);
   const type = valueClass.split(" ")[1].split("");
@@ -1516,11 +1516,11 @@ function myTypeof(value) {
 }
 
 console.log(myTypeof(123));
-~~~
+```
 
 ## 四十、Object.assign()方法
 
-~~~js
+```js
 Object.prototype.myAssign = function (target, ...source) {
   if (typeof target === "undefined" || target === null) {
     throw new TypeError("Cannot convert undefined or null to object");
@@ -1541,11 +1541,11 @@ Object.prototype.myAssign = function (target, ...source) {
 
 let obj1 = Object.myAssign({ a: 1 }, { b: 2 }, { c: 3 });
 console.log(obj1);
-~~~
+```
 
-## 四十一、Object.create方法
+## 四十一、Object.create 方法
 
-~~~js
+```js
 Object.prototype.myCreate = function (proto, propertyObject = undefined) {
   if (typeof proto !== "object" && typeof proto !== "function") {
     throw new TypeError("Object prototype may only an Object or null:" + proto);
@@ -1572,11 +1572,11 @@ Object.prototype.myCreate = function (proto, propertyObject = undefined) {
 
 const obj = Object.myCreate({});
 console.log(obj);
-~~~
+```
 
 ## 四十二、reduce
 
-~~~js
+```js
 Array.prototype.myReduce = function (cb, initialValue) {
   const arr = this;
   let total = initialValue || arr[0];
@@ -1591,19 +1591,19 @@ Array.prototype.myReduce = function (cb, initialValue) {
 let arr = [1, 2, 3];
 
 console.log(arr.myReduce((a, b) => a + b));
-~~~
+```
 
-## 四十三、trim方法
+## 四十三、trim 方法
 
-~~~js
+```js
 function trim(str) {
   return str.replace(/(^\s*)|(\s$)/g, "");
 }
-~~~
+```
 
 ## 四十四、字符串模板
 
-~~~js
+```js
 function render(template, data) {
   const reg = /\{\{(\w+)\}\}/;
 
@@ -1624,5 +1624,6 @@ let person = {
 };
 
 console.log(render(template, person));
-~~~
+```
 
+<Valine></Valine>

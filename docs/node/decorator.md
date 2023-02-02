@@ -6,21 +6,21 @@
 
 ## 2.类装饰器
 
-它会自动将class的构造函数传入到装饰器的第一个参数target，通过prototype去自定义添加属性和方法
+它会自动将 class 的构造函数传入到装饰器的第一个参数 target，通过 prototype 去自定义添加属性和方法
 
-~~~javascript
-function decorator(target:any){
-    target.prototype.name = "lisi"
+```javascript
+function decorator(target: any) {
+  target.prototype.name = "lisi";
 }
 
 @decorator
-class Lisi{
-    constructor(){}
+class Lisi {
+  constructor() {}
 }
 
-const list:any = new Lisi()
-console.log(list.name)
-~~~
+const list: any = new Lisi();
+console.log(list.name);
+```
 
 ## 3.属性装饰器
 
@@ -29,9 +29,9 @@ console.log(list.name)
 1. 原型对象
 2. 属性的名称
 
-~~~javascript
+```javascript
 function propertyDecorator:PropertyDecorator(target:any,key:string|symbol){
-    
+
 }
 
 class Lisi{
@@ -43,7 +43,7 @@ class Lisi{
 		return this.name
     }
 }
-~~~
+```
 
 ## 4.参数装饰器
 
@@ -53,7 +53,7 @@ class Lisi{
 2. 方法的名称
 3. 参数的位置
 
-~~~javascript
+```javascript
 function paramDecorator:ParameterDecorator(target:any,key:string|symbol,index:number){
 
 }
@@ -67,7 +67,7 @@ class Lisi{
         return this.name
     }
 }
-~~~
+```
 
 ## 5.方法装饰器
 
@@ -77,9 +77,9 @@ class Lisi{
 2. 方法的名称
 3. 属性描述符 writable-可写 enumerable-可枚举 configurable-可配置
 
-~~~javascript
+```javascript
 function methodDecorator:MethodDecorator(target:any,key:string|symbol,descriptor:any){
-	
+
 }
 
 class Lisi{
@@ -92,5 +92,6 @@ class Lisi{
         return this..name
     }
 }
-~~~
+```
 
+<Valine></Valine>

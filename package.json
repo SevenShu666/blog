@@ -10,7 +10,10 @@
   "author": "shu",
   "license": "ISC",
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.9.7",
     "vuepress": "^1.9.7"
+  },
+  "dependencies": {
+    "valine": "^1.5.1",
+    "vuepress-plugin-comment": "^0.7.3"
   }
 }

@@ -41,10 +41,20 @@ module.exports = {
       // ],
       "/web/": ["html/", "css/", "js/", "writeJs/"],
       "/node/": ["", "decorator", "nestjsCli", "RESTful"],
-      "/miscellany/": ["", "gitOperate", "markDown"],
+      "/miscellany/": ["", "gitOperate", "markDown", "vuepress"],
     },
     lastUpdated: "Last Updated",
     smoothScroll: true,
   },
-  plugins: ["@vuepress/back-to-top"],
+  plugins: [
+    "@vuepress/back-to-top",
+    "@vuepress/active-header-links",
+    [
+      "@vuepress/register-components",
+
+      {
+        componentsDir: "./components",
+      },
+    ],
+  ],
 };

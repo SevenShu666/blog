@@ -328,3 +328,4 @@ console.log(child1.age);
 
 1. 某些间隔会被跳过
 2. 多个定时器的代码执行之间的间隔可能会比预期的小
+   <Valine></Valine>
