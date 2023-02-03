@@ -12,37 +12,18 @@ module.exports = {
       { text: "杂项", link: "/miscellany/" },
     ],
     sidebar: {
-      // "/web/": [
-      //   {
-      //     title: "", // 必要的
-      //     // path: "/web/html/", // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-      //     collapsable: false, // 可选的, 默认值是 true,控制子组是否折叠
-      //     sidebarDepth: 2, // 可选的, 默认值是 1,
-      //     children: ["html/"],
-      //   },
-      //   {
-      //     title: "",
-      //     collapsable: false,
-      //     sidebarDepth: 2,
-      //     children: ["css/"],
-      //   },
-      //   {
-      //     title: "",
-      //     collapsable: false,
-      //     sidebarDepth: 2,
-      //     children: ["js/"],
-      //   },
-      //   {
-      //     title: "",
-      //     collapsable: false,
-      //     sidebarDepth: 2,
-      //     children: ["writeJs/"],
-      //   },
-      // ],
       "/web/": ["html/", "css/", "js/", "writeJs/"],
-      "/node/": ["", "decorator", "nestjsCli", "RESTful"],
+      "/node/": [
+        "",
+        "decorator",
+        "nestjsCli",
+        "RESTful",
+        "controller",
+        "Providers",
+      ],
       "/miscellany/": ["", "gitOperate", "markDown", "vuepress"],
     },
+    sidebarDepth: 2,
     lastUpdated: "Last Updated",
     smoothScroll: true,
   },
