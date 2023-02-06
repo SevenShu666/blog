@@ -20,6 +20,7 @@ module.exports = {
         "RESTful",
         "controller",
         "Providers",
+        "module",
       ],
       "/miscellany/": ["", "gitOperate", "markDown", "vuepress"],
     },
