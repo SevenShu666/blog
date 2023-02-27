@@ -25,21 +25,21 @@
 
 这确保了我们在 `findOne()` 方法中接收的参数是一个数字
 
-~~~ts
+```ts
 @Get(':id')
 async findOne(@Param('id', ParseIntPipe) id: number) {
   return this.catsService.findOne(id);
 }
-~~~
+```
 
 ## 4.管道验证
 
-### 4.1 创建一个pipe
+### 4.1 创建一个 pipe
 
-nest g pi 对应的文件名，如user中
+nest g pi 对应的文件名，如 user 中
 
-~~~ts
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
+```ts
+import { ArgumentMetadata, Injectable, PipeTransform } from "@nestjs/common";
 
 @Injectable()
 export class PPipe implements PipeTransform {
@@ -47,29 +47,29 @@ export class PPipe implements PipeTransform {
     return value;
   }
 }
-~~~
+```
 
 ### 4.2 安装验证器
 
-~~~ts
+```ts
 npm i --save class-validator class-transformer
-~~~
+```
 
-~~~ts
-import {IsNotEmpty,IsString} from 'class-validator'
+```ts
+import { IsNotEmpty, IsString } from "class-validator";
 export class CreateUserDto {
-    @IsNotEmpty()//验证是否为空
-    @IsString() //是否为字符串
-    name:string;
- 
-    @IsNotEmpty()
-    age:number
+  @IsNotEmpty() //验证是否为空
+  @IsString() //是否为字符串
+  name: string;
+
+  @IsNotEmpty()
+  age: number;
 }
-~~~
+```
 
-### 4.3 controll使用管道和定义类型
+### 4.3 controll 使用管道和定义类型
 
-~~~ts
+```ts
 import {
   Controller,
   Get,
@@ -79,13 +79,13 @@ import {
   Param,
   Delete,
   Query,
-} from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserPipe } from './user.pipe';
+} from "@nestjs/common";
+import { UserService } from "./user.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { UserPipe } from "./user.pipe";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -94,22 +94,22 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 }
-~~~
+```
 
-### 4.4 实现验证transform
+### 4.4 实现验证 transform
 
-value 就是 前端传过来的数据 metaData 就是元数据 通过 metatype 可以去实例化这个类，实例化DTO，通过 validate 验证 DTO 返回一个promise 的错误信息 如果有错误抛出
+value 就是 前端传过来的数据 metaData 就是元数据 通过 metatype 可以去实例化这个类，实例化 DTO，通过 validate 验证 DTO 返回一个 promise 的错误信息 如果有错误抛出
 
-~~~ts
+```ts
 import {
   ArgumentMetadata,
   HttpException,
   HttpStatus,
   Injectable,
   PipeTransform,
-} from '@nestjs/common';
-import { plainToInstance } from 'class-transformer';
-import { validate } from 'class-validator';
+} from "@nestjs/common";
+import { plainToInstance } from "class-transformer";
+import { validate } from "class-validator";
 
 @Injectable()
 export class UserPipe implements PipeTransform {
@@ -124,16 +124,16 @@ export class UserPipe implements PipeTransform {
     return value;
   }
 }
-~~~
+```
 
-## 5.全局DTO验证管道
+## 5.全局 DTO 验证管道
 
-~~~tsx
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { Response } from './common/response';
-import { HttpFilter } from './common/filter';
-import { ValidationPipe } from '@nestjs/common';
+```tsx
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { Response } from "./common/response";
+import { HttpFilter } from "./common/filter";
+import { ValidationPipe } from "@nestjs/common";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -143,5 +143,6 @@ async function bootstrap() {
   await app.listen(3000);
 }
 bootstrap();
-~~~
+```
 
+<Valine></Valine>

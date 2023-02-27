@@ -24,6 +24,7 @@ module.exports = {
         "middleware",
         "interceptor",
         "exceptionFilter",
+        "pipe",
       ],
       "/miscellany/": ["", "gitOperate", "markDown", "vuepress"],
     },
