@@ -395,7 +395,7 @@ git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
-# 例如 git push -f git@github.com:koala-coding/blog.git master:gh-pages
+# 例如 git push -f git@github.com:starsky-future/blog.git master:gh-pages
 cd -
 ```
 
