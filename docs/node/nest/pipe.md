@@ -36,7 +36,7 @@ async findOne(@Param('id', ParseIntPipe) id: number) {
 
 ### 4.1 创建一个 pipe
 
-nest g pi 对应的文件名，如 user 中
+`nest g pi [name]`，如 user 中
 
 ```ts
 import { ArgumentMetadata, Injectable, PipeTransform } from "@nestjs/common";

@@ -7,14 +7,18 @@ module.exports = {
     nav: [
       { text: "主页", link: "/" },
       { text: "前端", link: "/web/html/" },
-      { text: "node", link: "/node/" },
+      {
+        text: "node",
+        ariaLabel: "node Menu",
+        items: [{ text: "nest", link: "/node/nest/" }],
+      },
       { text: "算法", link: "/arithmetic/" },
       { text: "杂项", link: "/miscellany/" },
     ],
     sidebar: {
       "/web/": ["html/", "css/", "js/", "writeJs/"],
-      "/node/": [
-        "",
+      "/node/nest/": [
+        "/",
         "decorator",
         "nestjsCli",
         "RESTful",
@@ -25,6 +29,11 @@ module.exports = {
         "interceptor",
         "exceptionFilter",
         "pipe",
+        "guard",
+        "definitionDecorator",
+        "database",
+        "entity",
+        "CURD",
       ],
       "/miscellany/": ["", "gitOperate", "markDown", "vuepress"],
     },
