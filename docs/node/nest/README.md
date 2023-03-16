@@ -50,4 +50,3 @@ ExceptionFilter 可以对抛出的异常做处理，返回对应的响应
 ## 调用顺序
 
 进入路由会先调用 Guard，判断有没有权限，如果没有权限，这里就抛异常了，抛出的 HttpException 会被 ExceptionFilter 处理。如果有权限，就会调用拦截器，拦截器一个个的调用，最后会调用 controller 的方法，调用 controller 的方法之前，会使用 pipe 对参数做处理。
-<Valine></Valine>

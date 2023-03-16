@@ -2,15 +2,9 @@
 
 ## 路由
 
-~~~typescript
-import {
-  Controller,
-  Get,
-  Post,
-  Patch,
-  Delete,
-} from '@nestjs/common';
-~~~
+```typescript
+import { Controller, Get, Post, Patch, Delete } from "@nestjs/common";
+```
 
 | @Get()    | 获取数据 |
 | --------- | -------- |
@@ -20,7 +14,7 @@ import {
 
 ## Request
 
-从@nestjs/common包获取
+从@nestjs/common 包获取
 
 | @Request()，@Req()      | req                             |
 | ----------------------- | ------------------------------- |
@@ -33,11 +27,11 @@ import {
 | @Headers(name?: string) | req.headers`/`req.headers[name] |
 | @HttpCode               |                                 |
 
-### 1.获取get请求传参
+### 1.获取 get 请求传参
 
-可以通过Request装饰器或Query装饰器
+可以通过 Request 装饰器或 Query 装饰器
 
-~~~typescript
+```typescript
 import { Controller, Get, Post, Body, Patch, Param, Delete, Version, Request, Query, Ip, Header, Headers } from '@nestjs/common';
 
 @Get()
@@ -49,13 +43,13 @@ findOne(@Req() req) {
 findOne(@Query() query) {
 	console.log(query);
 }
-~~~
+```
 
-### 2.获取post请求传参
+### 2.获取 post 请求传参
 
-可以通过Request装饰器或Body装饰器
+可以通过 Request 装饰器或 Body 装饰器
 
-~~~typescript
+```typescript
 import { Controller, Get, Post, Body, Patch, Param, Delete, Version, Request, Query, Ip, Header, Headers } from '@nestjs/common';
 
 @Post()
@@ -67,24 +61,24 @@ create(@Req() req) {
 create(@Body() body) {
 	console.log(body);
 }
-~~~
+```
 
-可以直接读取key
+可以直接读取 key
 
-~~~typescript
+```typescript
 import { Controller, Get, Post, Body, Patch, Param, Delete, Version, Request, Query, Ip, Header, Headers } from '@nestjs/common';
 
 @Post()
 create(@Body("name") body) {
 	console.log(body);
 }
-~~~
+```
 
 ### 3.动态路由
 
-可以通过Request装饰器或Param装饰器
+可以通过 Request 装饰器或 Param 装饰器
 
-~~~typescript
+```typescript
 import { Controller, Get, Post, Body, Patch, Param, Delete, Version, Request, Query, Ip, Header, Headers } from '@nestjs/common';
 
 @Get(':id')
@@ -96,24 +90,24 @@ findOne (@Req() req) {
 findOne (@Param() param) {
 	console.log(param)
 }
-~~~
+```
 
-### 4.header信息
+### 4.header 信息
 
-~~~typescript
+```typescript
 import { Controller, Get, Post, Body, Patch, Param, Delete, Version, Request, Query, Ip, Header, Headers } from '@nestjs/common';
 
 @Get(':id')
 findOne (@Headers() header) {
 	console.log(header)
 }
-~~~
+```
 
 ### 5.状态码
 
 使用 HttpCode 装饰器 控制接口返回的状态码
 
-~~~typescript
+```typescript
 import { Controller, Get, Post, Body, Patch, Param, Delete, Version, Request, Query, Ip, Header, Headers, HttpCode } from '@nestjs/common';
 
 @Get(':id')
@@ -124,6 +118,4 @@ findOne (@Headers() header) {
     }
 }
 
-~~~
-
-<Valine></Valine>
+```

@@ -4,23 +4,23 @@ Providers 是 `Nest` 的一个基本概念。许多基本的 `Nest` 类可能被
 
 ## 1.基础用法
 
-直接在module文件引入service在providers注入
+直接在 module 文件引入 service 在 providers 注入
 
-~~~typescript
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
+```typescript
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
 
 @Module({
   controllers: [UserController],
   providers: [UserService],
 })
 export class UserModule {}
-~~~
+```
 
-然后在Controller就可以使用注入好的service了
+然后在 Controller 就可以使用注入好的 service 了
 
-~~~typescript
+```typescript
 import {
   Controller,
   Get,
@@ -30,12 +30,12 @@ import {
   Param,
   Delete,
   Query,
-} from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+} from "@nestjs/common";
+import { UserService } from "./user.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -49,43 +49,45 @@ export class UserController {
     return this.userService.findAll(query);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(":id")
+  findOne(@Param("id") id: string) {
     return this.userService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  @Patch(":id")
+  update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete(":id")
+  remove(@Param("id") id: string) {
     return this.userService.remove(+id);
   }
 }
-~~~
+```
 
 ## 2.自定义名字
 
-~~~typescript
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
- 
+```typescript
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
+
 @Module({
   controllers: [UserController],
-  providers: [{
-    provide: "lisi",
-    useClass: UserService
-  }]
+  providers: [
+    {
+      provide: "lisi",
+      useClass: UserService,
+    },
+  ],
 })
-export class UserModule { }
-~~~
+export class UserModule {}
+```
 
-自定义名称在controller文件需要使用Inject获取对应名称
+自定义名称在 controller 文件需要使用 Inject 获取对应名称
 
-~~~typescript
+```typescript
 import {
   Controller,
   Get,
@@ -96,12 +98,12 @@ import {
   Delete,
   Query,
   Inject,
-} from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+} from "@nestjs/common";
+import { UserService } from "./user.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(@Inject("lisi") private readonly userService: UserService) {}
 
@@ -115,74 +117,76 @@ export class UserController {
     return this.userService.findAll(query);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(":id")
+  findOne(@Param("id") id: string) {
     return this.userService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  @Patch(":id")
+  update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete(":id")
+  remove(@Param("id") id: string) {
     return this.userService.remove(+id);
   }
 }
-~~~
+```
 
 ## 3.自定义注入值
 
-~~~typescript
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
- 
+```typescript
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
+
 @Module({
   controllers: [UserController],
-  providers: [{
-    provide: "SHOP",
-    useValue: ['TB', 'PDD', 'JD']
-  }]
+  providers: [
+    {
+      provide: "SHOP",
+      useValue: ["TB", "PDD", "JD"],
+    },
+  ],
 })
-export class UserModule { }
-~~~
+export class UserModule {}
+```
 
 ## 4.工厂模式
 
 如果服务之间有相互的依赖或者逻辑处理可以使用 `useFactory`
 
-~~~typescript
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserService2 } from './user.service2';
-import { UserController } from './user.controller';
- 
+```typescript
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserService2 } from "./user.service2";
+import { UserController } from "./user.controller";
+
 @Module({
   controllers: [UserController],
   providers: [
     UserService,
-  {
-    provide: "Test",
-    inject: [UserService],
-    useFactory(UserService: UserService) {
-      return new UserService2(UserService)
-    }
-  }
-  ]
+    {
+      provide: "Test",
+      inject: [UserService],
+      useFactory(UserService: UserService) {
+        return new UserService2(UserService);
+      },
+    },
+  ],
 })
-export class UserModule { }
-~~~
+export class UserModule {}
+```
 
 ## 5.异步模式
 
-`useFactory`返回一个promise或者其他异步操作
+`useFactory`返回一个 promise 或者其他异步操作
 
 ```TypeScript
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
- 
+
 @Module({
   controllers: [UserController],
   providers: [
@@ -200,5 +204,3 @@ import { UserController } from './user.controller';
 })
 export class UserModule { }
 ```
-
-<Valine></Valine>

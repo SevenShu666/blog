@@ -144,5 +144,3 @@ async function bootstrap() {
 }
 bootstrap();
 ```
-
-<Valine></Valine>

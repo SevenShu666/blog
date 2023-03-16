@@ -10,6 +10,7 @@
 2. 关于时间临界值：对于 00:00:00 和 24:00:00 这两个时间临界值, ios 会转成 NAN
 3. 时间格式为 2022/07（年月）,这种在 ios 用 new Date 转换也会变成 NaN，需要补全日期
 
-## 3.replaceAll方法
+## 3.replaceAll 方法
 
-低版本手机不支持replaceAll方法
+低版本手机不支持 replaceAll 方法
+<Valine></Valine>

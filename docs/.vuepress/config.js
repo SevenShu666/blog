@@ -13,7 +13,13 @@ module.exports = {
       { text: "工作日记", link: "/workingDiary/" },
     ],
     sidebar: {
-      "/web/": ["html/", "css/", "js/", "writeJs/"],
+      "/web/": [
+        "html/",
+        "css/",
+        "js/",
+        "writeJs/",
+        { title: "Typescript", children: ["ts/"] },
+      ],
       "/node/": [
         "",
         {
@@ -38,7 +44,19 @@ module.exports = {
           ],
         },
       ],
-      "/arithmetic/": ["", { title: "动态规划", children: ["DP/"] }],
+      "/arithmetic/": [
+        "",
+        {
+          title: "动态规划",
+          children: [
+            "DP/",
+            "DP/fibonacci",
+            "DP/climbStairs",
+            "DP/diffPath",
+            "DP/climbStairsII",
+          ],
+        },
+      ],
       "/miscellany/": ["", "gitOperate", "markDown", "vuepress"],
       "/workingDiary/": [""],
     },

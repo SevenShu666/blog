@@ -1,41 +1,49 @@
 # 第十六章 CURD
 
-## 1.controller文件
+## 1.controller 文件
 
-~~~ts
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
- 
-@Controller('user')
+```ts
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from "@nestjs/common";
+import { UserService } from "./user.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
- 
+
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
- 
+
   @Get()
-  findAll(@Query() query:{keyWord:string,page:number,pageSize:number}) {
+  findAll(@Query() query: { keyWord: string; page: number; pageSize: number }) {
     return this.userService.findAll(query);
   }
- 
- 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+
+  @Patch(":id")
+  update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
- 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+
+  @Delete(":id")
+  remove(@Param("id") id: string) {
     return this.userService.remove(+id);
   }
 }
-~~~
+```
 
-## 2.service文件
+## 2.service 文件
 
 1.引入 InjectRepository typeOrm 依赖注入 接受一个实体
 
@@ -45,75 +53,77 @@ export class UserController {
 
 4.save 保存 find 查询 update 更新 delete 删除
 
-~~~ts
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { Repository, Like } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
+```ts
+import { Injectable } from "@nestjs/common";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { Repository, Like } from "typeorm";
+import { InjectRepository } from "@nestjs/typeorm";
+import { User } from "./entities/user.entity";
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(User) private readonly user: Repository<User>) { }
+  constructor(
+    @InjectRepository(User) private readonly user: Repository<User>
+  ) {}
   create(createUserDto: CreateUserDto) {
-    const data = new User()
-    data.name = createUserDto.name
-    data.desc = createUserDto.desc
-    return this.user.save(data)
+    const data = new User();
+    data.name = createUserDto.name;
+    data.desc = createUserDto.desc;
+    return this.user.save(data);
   }
- 
-  async findAll(query: { keyWord: string, page: number, pageSize: number }) {
+
+  async findAll(query: { keyWord: string; page: number; pageSize: number }) {
     const data = await this.user.find({
       where: {
-        name: Like(`%${query.keyWord}%`)
+        name: Like(`%${query.keyWord}%`),
       },
       order: {
-        id: "DESC"
+        id: "DESC",
       },
-      skip: (query.page - 1)* query.pageSize,
-      take:query.pageSize,
-    })
+      skip: (query.page - 1) * query.pageSize,
+      take: query.pageSize,
+    });
     const total = await this.user.count({
       where: {
-        name: Like(`%${query.keyWord}%`)
+        name: Like(`%${query.keyWord}%`),
       },
-    })
+    });
     return {
       data,
-      total
-    }
+      total,
+    };
   }
- 
+
   update(id: number, updateUserDto: UpdateUserDto) {
-    return this.user.update(id, updateUserDto)
+    return this.user.update(id, updateUserDto);
   }
- 
+
   remove(id: number) {
-    return this.user.delete(id)
+    return this.user.delete(id);
   }
 }
-~~~
+```
 
-## 3.module文件
+## 3.module 文件
 
-~~~ts
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
-import {TypeOrmModule} from '@nestjs/typeorm'
-import { User } from './entities/user.entity';
+```ts
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { User } from "./entities/user.entity";
 @Module({
-  imports:[TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],
-  providers: [UserService]
+  providers: [UserService],
 })
 export class UserModule {}
-~~~
+```
 
-## 4.entity文件
+## 4.entity 文件
 
-~~~ts
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+```ts
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class UserEntity {
@@ -124,15 +134,13 @@ export class UserEntity {
   @Column()
   desc: string;
 }
-~~~
+```
 
 ## 5.DTO
 
-~~~ts
+```ts
 export class CreateUserDto {
   name: string;
   desc: string;
 }
-~~~
-
-<Valine></Valine>
+```

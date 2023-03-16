@@ -5,7 +5,7 @@
 [mysql 官网](https://downloads.mysql.com/archives/installer/)
 ![mysql](/blog/mysql_database.webp)
 
-## 2.安装mysql
+## 2.安装 mysql
 
 **这里选择是自定义安装，所以直接选择“Custom”，点击“Next”**
 
@@ -35,35 +35,35 @@ Install Directory:安装路径
 
 Data Directory:数据存放路径
 
-## 3.ORM框架（typeOrm）
+## 3.ORM 框架（typeOrm）
 
-~~~
+```
 npm install --save @nestjs/typeorm typeorm mysql2
-~~~
+```
 
-使用数据可视化工具DBeaver新建一个库
+使用数据可视化工具 DBeaver 新建一个库
 
-在app.module.ts注册
+在 app.module.ts 注册
 
-~~~ts
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ListModule } from './list/list.module';
-import { GuardModule } from './guard/guard.module';
+```ts
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { UserModule } from "./user/user.module";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { ListModule } from "./list/list.module";
+import { GuardModule } from "./guard/guard.module";
 
 @Module({
   imports: [
     UserModule,
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      username: 'root',
-      password: '******',
-      host: 'localhost',
+      type: "mysql",
+      username: "root",
+      password: "******",
+      host: "localhost",
       port: 3306,
-      database: 'lantian',
+      database: "lantian",
       retryDelay: 500,
       retryAttempts: 10,
       autoLoadEntities: true,
@@ -75,9 +75,9 @@ import { GuardModule } from './guard/guard.module';
   providers: [AppService],
 })
 export class AppModule {}
-~~~
+```
 
-~~~ts
+```ts
     TypeOrmModule.forRoot({
       type: "mysql", //数据库类型
       username: "root", //账号
@@ -91,14 +91,14 @@ export class AppModule {}
       retryAttempts:10,//重试连接数据库的次数
       autoLoadEntities:true, //如果为true,将自动加载实体 forFeature()方法注册的每个实体都将自动添加到配置对象的实体数组中
     }),
-~~~
+```
 
 定义实体
 
 src/user/entities/user.entity.ts
 
-~~~ts
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+```ts
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class UserEntity {
@@ -109,18 +109,18 @@ export class UserEntity {
   @Column()
   desc: string;
 }
-~~~
+```
 
 关联实体
 
 src/user/user.module.ts
 
-~~~ts
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './entities/user.entity';
+```ts
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { UserEntity } from "./entities/user.entity";
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -128,6 +128,4 @@ import { UserEntity } from './entities/user.entity';
   providers: [UserService],
 })
 export class UserModule {}
-~~~
-
-<Valine></Valine>
+```

@@ -4,18 +4,18 @@
 
 生成装饰器
 
-`nest g d [name]`，[name].decorator文件
+`nest g d [name]`，[name].decorator 文件
 
-~~~ts
-import { SetMetadata } from '@nestjs/common';
- 
+```ts
+import { SetMetadata } from "@nestjs/common";
+
 export const Role = (role: string[]) => {
-    console.log(role,1)
-    return SetMetadata('role', role);
-}
-~~~
+  console.log(role, 1);
+  return SetMetadata("role", role);
+};
+```
 
-~~~ts
+```ts
 import {
   Controller,
   Get,
@@ -61,22 +61,28 @@ export class GuardController {
     return this.guardService.remove(+id);
   }
 }
-~~~
+```
 
-## 2.自定义参数装饰器返回一个url
+## 2.自定义参数装饰器返回一个 url
 
-~~~ts
-import { SetMetadata,createParamDecorator,ExecutionContext ,applyDecorators } from '@nestjs/common';
-import type {Request} from 'express'
- 
- 
-export const ReqUrl = createParamDecorator((data:string,ctx:ExecutionContext)=>{
-    const req = ctx.switchToHttp().getRequest<Request>()
-    return req.url
-})
-~~~
+```ts
+import {
+  SetMetadata,
+  createParamDecorator,
+  ExecutionContext,
+  applyDecorators,
+} from "@nestjs/common";
+import type { Request } from "express";
 
-~~~ts
+export const ReqUrl = createParamDecorator(
+  (data: string, ctx: ExecutionContext) => {
+    const req = ctx.switchToHttp().getRequest<Request>();
+    return req.url;
+  }
+);
+```
+
+```ts
 import {
   Controller,
   Get,
@@ -90,7 +96,7 @@ import {
 import { GuardService } from "./guard.service";
 import { CreateGuardDto } from "./dto/create-guard.dto";
 import { UpdateGuardDto } from "./dto/update-guard.dto";
-import { Role,ReqUrl } from "./role.decorator";
+import { Role, ReqUrl } from "./role.decorator";
 
 @Controller("guard")
 export class GuardController {
@@ -104,7 +110,7 @@ export class GuardController {
   @Get()
   @Role(["admin"])
   findAll(@ReqUrl() url) {
-    console.log(url)
+    console.log(url);
     return this.guardService.findAll();
   }
 
@@ -123,6 +129,4 @@ export class GuardController {
     return this.guardService.remove(+id);
   }
 }
-~~~
-
-<Valine></Valine>
+```

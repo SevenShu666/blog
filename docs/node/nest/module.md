@@ -12,32 +12,30 @@
 
 ## 1.基本用法
 
-通过nest g res user创建一个CURD时，nestjs会自动在app.module.ts帮我们引入模块
+通过 nest g res user 创建一个 CURD 时，nestjs 会自动在 app.module.ts 帮我们引入模块
 
-~~~typescript
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
+```typescript
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { UserModule } from "./user/user.module";
 
 @Module({
-  imports: [
-    UserModule,
-  ],
+  imports: [UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
-~~~
+```
 
 ## 2.共享模块
 
-需要将当前模块service共享给其他模块使用时，需要在当前模块的module文件将该服务导出
+需要将当前模块 service 共享给其他模块使用时，需要在当前模块的 module 文件将该服务导出
 
-~~~typescript
-import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
+```typescript
+import { Module } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserController } from "./user.controller";
 
 @Module({
   controllers: [UserController],
@@ -45,34 +43,32 @@ import { UserController } from './user.controller';
   exports: [UserService],
 })
 export class UserModule {}
-~~~
+```
 
 在需要使用的模块引入
 
-~~~typescript
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
+```typescript
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { UserModule } from "./user/user.module";
 
 @Module({
-  imports: [
-    UserModule,
-  ],
+  imports: [UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
-~~~
+```
 
-~~~typescript
-import { UserService } from './user/user.service';
+```typescript
+import { UserService } from "./user/user.service";
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private readonly userService: UserService,
+    private readonly userService: UserService
   ) {}
 
   @Get()
@@ -80,18 +76,18 @@ export class AppController {
     return this.userService.findAll();
   }
 }
-~~~
+```
 
 ## 3.全局模块
 
 通过添加@Global()注册为全局模块
 
-将ListService模块注册为全局模块
+将 ListService 模块注册为全局模块
 
-~~~typescript
-import { Global, Module } from '@nestjs/common';
-import { ListService } from './list.service';
-import { ListController } from './list.controller';
+```typescript
+import { Global, Module } from "@nestjs/common";
+import { ListService } from "./list.service";
+import { ListController } from "./list.controller";
 
 @Global()
 @Module({
@@ -100,77 +96,72 @@ import { ListController } from './list.controller';
   exports: [ListService],
 })
 export class ListModule {}
-~~~
+```
 
-在user模块使用不需要在module中引入
+在 user 模块使用不需要在 module 中引入
 
-~~~typescript
-import { Controller,Get } from '@nestjs/common';
-import { UserService } from './user.service';
-import { ListService } from '../list/list.service';
+```typescript
+import { Controller, Get } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { ListService } from "../list/list.service";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private readonly listService: ListService,
+    private readonly listService: ListService
   ) {}
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(":id")
+  findOne(@Param("id") id: string) {
     return this.listService.findOne(+id);
   }
 }
-~~~
+```
 
 ## 4.动态模块
 
 动态模块主要就是为了给模块传递参数
 
-~~~typescript
-import { Module, DynamicModule, Global } from '@nestjs/common'
- 
+```typescript
+import { Module, DynamicModule, Global } from "@nestjs/common";
+
 interface Options {
-    path: string
+  path: string;
 }
- 
+
 @Global()
 @Module({})
 export class ConfigModule {
-    static forRoot(options: Options): DynamicModule {
-        return {
-            module: ConfigModule,
-            providers: [
-                {
-                    provide: "Config",
-                    useValue: { baseApi: "/api" + options.path }
-                }
-            ],
-            exports: [
-                {
-                    provide: "Config",
-                    useValue: { baseApi: "/api" + options.path }
-                }
-            ]
-        }
-    }
-} 
-~~~
+  static forRoot(options: Options): DynamicModule {
+    return {
+      module: ConfigModule,
+      providers: [
+        {
+          provide: "Config",
+          useValue: { baseApi: "/api" + options.path },
+        },
+      ],
+      exports: [
+        {
+          provide: "Config",
+          useValue: { baseApi: "/api" + options.path },
+        },
+      ],
+    };
+  }
+}
+```
 
-~~~typescript
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from './config/config.module';
+```typescript
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ConfigModule } from "./config/config.module";
 
 @Module({
-  imports: [
-    UserModule,
-    ConfigModule.forRoot({path:"/nine"})
-  ],
+  imports: [UserModule, ConfigModule.forRoot({ path: "/nine" })],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
-~~~
-
-<Valine></Valine>
+```

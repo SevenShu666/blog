@@ -93,5 +93,3 @@ class Lisi{
     }
 }
 ```
-
-<Valine></Valine>
