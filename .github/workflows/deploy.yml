@@ -1,3 +1,4 @@
+export NODE_OPTIONS=--openssl-legacy-provider
 # This is a basic workflow to help you get started with Actions
 
 name: Deploy GitHub Pages
