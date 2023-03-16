@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>动态规划 | 小草屋</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/blog/favicon.ico">
+    <meta name="description" content="藏点书">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.08927560.css" as="style"><link rel="preload" href="/blog/assets/js/app.254ac101.js" as="script"><link rel="preload" href="/blog/assets/js/2.10e67aca.js" as="script"><link rel="preload" href="/blog/assets/js/10.909f91ce.js" as="script"><link rel="prefetch" href="/blog/assets/js/11.b7f530f3.js"><link rel="prefetch" href="/blog/assets/js/12.07b0e3c7.js"><link rel="prefetch" href="/blog/assets/js/13.31c5e2e9.js"><link rel="prefetch" href="/blog/assets/js/14.86ba7292.js"><link rel="prefetch" href="/blog/assets/js/15.5e39de44.js"><link rel="prefetch" href="/blog/assets/js/16.78c3717e.js"><link rel="prefetch" href="/blog/assets/js/17.eef2576e.js"><link rel="prefetch" href="/blog/assets/js/18.90825b43.js"><link rel="prefetch" href="/blog/assets/js/19.c79d9139.js"><link rel="prefetch" href="/blog/assets/js/20.499b887b.js"><link rel="prefetch" href="/blog/assets/js/21.2a3ac6db.js"><link rel="prefetch" href="/blog/assets/js/22.6f66a6f0.js"><link rel="prefetch" href="/blog/assets/js/23.cc2dbe7c.js"><link rel="prefetch" href="/blog/assets/js/24.7a5b8c66.js"><link rel="prefetch" href="/blog/assets/js/25.0bad3b79.js"><link rel="prefetch" href="/blog/assets/js/26.eca5aa62.js"><link rel="prefetch" href="/blog/assets/js/27.1322b32a.js"><link rel="prefetch" href="/blog/assets/js/28.c6a40fb4.js"><link rel="prefetch" href="/blog/assets/js/29.ee59c5d2.js"><link rel="prefetch" href="/blog/assets/js/3.03b63f54.js"><link rel="prefetch" href="/blog/assets/js/30.4dfd6a84.js"><link rel="prefetch" href="/blog/assets/js/31.21eda353.js"><link rel="prefetch" href="/blog/assets/js/32.5a937dd9.js"><link rel="prefetch" href="/blog/assets/js/33.ba53ff03.js"><link rel="prefetch" href="/blog/assets/js/34.5fc4e753.js"><link rel="prefetch" href="/blog/assets/js/35.db3c811e.js"><link rel="prefetch" href="/blog/assets/js/36.eafc5430.js"><link rel="prefetch" href="/blog/assets/js/37.9e760e14.js"><link rel="prefetch" href="/blog/assets/js/38.96e22514.js"><link rel="prefetch" href="/blog/assets/js/39.980851ef.js"><link rel="prefetch" href="/blog/assets/js/4.efec45c3.js"><link rel="prefetch" href="/blog/assets/js/40.d6a110d5.js"><link rel="prefetch" href="/blog/assets/js/41.b177f853.js"><link rel="prefetch" href="/blog/assets/js/42.97cc0503.js"><link rel="prefetch" href="/blog/assets/js/5.e33501ae.js"><link rel="prefetch" href="/blog/assets/js/6.f78f4531.js"><link rel="prefetch" href="/blog/assets/js/7.01e9a040.js"><link rel="prefetch" href="/blog/assets/js/8.ddbfe6c6.js"><link rel="prefetch" href="/blog/assets/js/9.64e9b99c.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.08927560.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">小草屋</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/blog/web/html/" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/blog/node/" class="nav-link">
+  node
+</a></div><div class="nav-item"><a href="/blog/arithmetic/" class="nav-link router-link-active">
+  算法
+</a></div><div class="nav-item"><a href="/blog/miscellany/" class="nav-link">
+  杂项
+</a></div><div class="nav-item"><a href="/blog/workingDiary/" class="nav-link">
+  工作日记
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/blog/web/html/" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/blog/node/" class="nav-link">
+  node
+</a></div><div class="nav-item"><a href="/blog/arithmetic/" class="nav-link router-link-active">
+  算法
+</a></div><div class="nav-item"><a href="/blog/miscellany/" class="nav-link">
+  杂项
+</a></div><div class="nav-item"><a href="/blog/workingDiary/" class="nav-link">
+  工作日记
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/blog/arithmetic/" aria-current="page" class="sidebar-link">复杂度</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>动态规划</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/arithmetic/DP/" aria-current="page" class="active sidebar-link">动态规划</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/arithmetic/DP/#动态规划解题步骤" class="sidebar-link">动态规划解题步骤</a></li><li class="sidebar-sub-header"><a href="/blog/arithmetic/DP/#动态规划-debug" class="sidebar-link">动态规划 debug</a></li></ul></li><li><a href="/blog/arithmetic/DP/fibonacci.html" class="sidebar-link">斐波那契数</a></li><li><a href="/blog/arithmetic/DP/climbStairs.html" class="sidebar-link">使用最小花费爬楼梯</a></li><li><a href="/blog/arithmetic/DP/diffPath.html" class="sidebar-link">不同路径</a></li><li><a href="/blog/arithmetic/DP/climbStairsII.html" class="sidebar-link">不同路径II</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="动态规划"><a href="#动态规划" class="header-anchor">#</a> 动态规划</h1> <p>如果某一问题有很多重叠子问题，使用动态规划是最有效的，动态规划中每一个状态一定是由上一个状态推导出来的</p> <h2 id="动态规划解题步骤"><a href="#动态规划解题步骤" class="header-anchor">#</a> 动态规划解题步骤</h2> <p>一些情况是递推公式决定了 dp 数组要如何初始化</p> <ol><li>确定 dp 数组（dp table）以及下标的含义</li> <li>确定递推公式</li> <li>dp 数组如何初始化</li> <li>确定遍历顺序</li> <li>举例推导 dp 数组</li></ol> <h2 id="动态规划-debug"><a href="#动态规划-debug" class="header-anchor">#</a> 动态规划 debug</h2> <p>最好的方法将 dp 数组打印出来，将状态转移在 dp 数组上具体模拟一遍，确定最后推到出来的结果是不是想要的</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/8/2023, 3:28:52 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/arithmetic/" class="prev router-link-active">
+        复杂度
+      </a></span> <span class="next"><a href="/blog/arithmetic/DP/fibonacci.html">
+        斐波那契数
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.254ac101.js" defer></script><script src="/blog/assets/js/2.10e67aca.js" defer></script><script src="/blog/assets/js/10.909f91ce.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>第二章 nestjs cli | 小草屋</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/blog/favicon.ico">
+    <meta name="description" content="藏点书">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.08927560.css" as="style"><link rel="preload" href="/blog/assets/js/app.254ac101.js" as="script"><link rel="preload" href="/blog/assets/js/2.10e67aca.js" as="script"><link rel="preload" href="/blog/assets/js/35.db3c811e.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.909f91ce.js"><link rel="prefetch" href="/blog/assets/js/11.b7f530f3.js"><link rel="prefetch" href="/blog/assets/js/12.07b0e3c7.js"><link rel="prefetch" href="/blog/assets/js/13.31c5e2e9.js"><link rel="prefetch" href="/blog/assets/js/14.86ba7292.js"><link rel="prefetch" href="/blog/assets/js/15.5e39de44.js"><link rel="prefetch" href="/blog/assets/js/16.78c3717e.js"><link rel="prefetch" href="/blog/assets/js/17.eef2576e.js"><link rel="prefetch" href="/blog/assets/js/18.90825b43.js"><link rel="prefetch" href="/blog/assets/js/19.c79d9139.js"><link rel="prefetch" href="/blog/assets/js/20.499b887b.js"><link rel="prefetch" href="/blog/assets/js/21.2a3ac6db.js"><link rel="prefetch" href="/blog/assets/js/22.6f66a6f0.js"><link rel="prefetch" href="/blog/assets/js/23.cc2dbe7c.js"><link rel="prefetch" href="/blog/assets/js/24.7a5b8c66.js"><link rel="prefetch" href="/blog/assets/js/25.0bad3b79.js"><link rel="prefetch" href="/blog/assets/js/26.eca5aa62.js"><link rel="prefetch" href="/blog/assets/js/27.1322b32a.js"><link rel="prefetch" href="/blog/assets/js/28.c6a40fb4.js"><link rel="prefetch" href="/blog/assets/js/29.ee59c5d2.js"><link rel="prefetch" href="/blog/assets/js/3.03b63f54.js"><link rel="prefetch" href="/blog/assets/js/30.4dfd6a84.js"><link rel="prefetch" href="/blog/assets/js/31.21eda353.js"><link rel="prefetch" href="/blog/assets/js/32.5a937dd9.js"><link rel="prefetch" href="/blog/assets/js/33.ba53ff03.js"><link rel="prefetch" href="/blog/assets/js/34.5fc4e753.js"><link rel="prefetch" href="/blog/assets/js/36.eafc5430.js"><link rel="prefetch" href="/blog/assets/js/37.9e760e14.js"><link rel="prefetch" href="/blog/assets/js/38.96e22514.js"><link rel="prefetch" href="/blog/assets/js/39.980851ef.js"><link rel="prefetch" href="/blog/assets/js/4.efec45c3.js"><link rel="prefetch" href="/blog/assets/js/40.d6a110d5.js"><link rel="prefetch" href="/blog/assets/js/41.b177f853.js"><link rel="prefetch" href="/blog/assets/js/42.97cc0503.js"><link rel="prefetch" href="/blog/assets/js/5.e33501ae.js"><link rel="prefetch" href="/blog/assets/js/6.f78f4531.js"><link rel="prefetch" href="/blog/assets/js/7.01e9a040.js"><link rel="prefetch" href="/blog/assets/js/8.ddbfe6c6.js"><link rel="prefetch" href="/blog/assets/js/9.64e9b99c.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.08927560.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">小草屋</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/blog/web/html/" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/blog/node/" class="nav-link router-link-active">
+  node
+</a></div><div class="nav-item"><a href="/blog/arithmetic/" class="nav-link">
+  算法
+</a></div><div class="nav-item"><a href="/blog/miscellany/" class="nav-link">
+  杂项
+</a></div><div class="nav-item"><a href="/blog/workingDiary/" class="nav-link">
+  工作日记
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/blog/web/html/" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/blog/node/" class="nav-link router-link-active">
+  node
+</a></div><div class="nav-item"><a href="/blog/arithmetic/" class="nav-link">
+  算法
+</a></div><div class="nav-item"><a href="/blog/miscellany/" class="nav-link">
+  杂项
+</a></div><div class="nav-item"><a href="/blog/workingDiary/" class="nav-link">
+  工作日记
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/blog/node/" aria-current="page" class="sidebar-link">Node.js</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>nest</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/node/nest/" aria-current="page" class="sidebar-link">nest.js</a></li><li><a href="/blog/node/nest/decorator.html" class="sidebar-link">第一章 装饰器</a></li><li><a href="/blog/node/nest/nestjsCli.html" aria-current="page" class="active sidebar-link">第二章 nestjs cli</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/node/nest/nestjsCli.html#安装-nestjs-cli-创建项目" class="sidebar-link">安装@nestjs/cli 创建项目</a></li><li class="sidebar-sub-header"><a href="/blog/node/nest/nestjsCli.html#目录介绍" class="sidebar-link">目录介绍</a></li><li class="sidebar-sub-header"><a href="/blog/node/nest/nestjsCli.html#常用命令" class="sidebar-link">常用命令</a></li></ul></li><li><a href="/blog/node/nest/RESTful.html" class="sidebar-link">第三章 RESTful 风格</a></li><li><a href="/blog/node/nest/controller.html" class="sidebar-link">第四章 控制器</a></li><li><a href="/blog/node/nest/Providers.html" class="sidebar-link">第五章 提供者</a></li><li><a href="/blog/node/nest/module.html" class="sidebar-link">第六章 模块</a></li><li><a href="/blog/node/nest/middleware.html" class="sidebar-link">第七章 中间件</a></li><li><a href="/blog/node/nest/interceptor.html" class="sidebar-link">第八章 拦截器</a></li><li><a href="/blog/node/nest/exceptionFilter.html" class="sidebar-link">第九章 异常过滤器</a></li><li><a href="/blog/node/nest/pipe.html" class="sidebar-link">第十章 管道</a></li><li><a href="/blog/node/nest/guard.html" class="sidebar-link">第十一章 守卫</a></li><li><a href="/blog/node/nest/definitionDecorator.html" class="sidebar-link">第十三章 自定义装饰器</a></li><li><a href="/blog/node/nest/database.html" class="sidebar-link">第十四章 连接数据库</a></li><li><a href="/blog/node/nest/entity.html" class="sidebar-link">第十五章 实体</a></li><li><a href="/blog/node/nest/CURD.html" class="sidebar-link">第十六章 CURD</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="第二章-nestjs-cli"><a href="#第二章-nestjs-cli" class="header-anchor">#</a> 第二章 nestjs cli</h1> <h2 id="安装-nestjs-cli-创建项目"><a href="#安装-nestjs-cli-创建项目" class="header-anchor">#</a> 安装@nestjs/cli 创建项目</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code>npm i <span class="token operator">-</span>g @nestjs<span class="token operator">/</span>cli
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code>nest <span class="token keyword">new</span> <span class="token punctuation">[</span>项目名称<span class="token punctuation">]</span>
+</code></pre></div><h2 id="目录介绍"><a href="#目录介绍" class="header-anchor">#</a> 目录介绍</h2> <p>1.main.ts 入口文件</p> <p>通过 NestFactory.create(AppModuule)创建一个 app，app.listen(3000)监听一个窗口</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> NestFactory <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/core&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AppModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./app.module&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">await</span> NestFactory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>AppModule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>2.Controller.ts 控制器</p> <p>前端请求到达这里，可以理解为路由</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Controller<span class="token punctuation">,</span> Get <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AppService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./app.service'</span><span class="token punctuation">;</span>
+
+@<span class="token function">Controller</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppController</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">private</span> readonly appService<span class="token operator">:</span> AppService</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  @<span class="token function">Get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">getHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> string <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>appService<span class="token punctuation">.</span><span class="token function">getHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>3.app.service.ts</p> <p>这个文件主要实现业务逻辑，业务逻辑放在这里可以复用</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/common&quot;</span><span class="token punctuation">;</span>
+
+@<span class="token function">Injectable</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppService</span> <span class="token punctuation">{</span>
+  <span class="token function">getHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> string <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;Hello World!&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="常用命令"><a href="#常用命令" class="header-anchor">#</a> 常用命令</h2> <p>nest --help 可以查看 nestjs 所有的命令
+<img src="/blog/nestHelp.png" alt="nestHelp"></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/16/2023, 9:58:11 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/node/nest/decorator.html" class="prev">
+        第一章 装饰器
+      </a></span> <span class="next"><a href="/blog/node/nest/RESTful.html">
+        第三章 RESTful 风格
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.254ac101.js" defer></script><script src="/blog/assets/js/2.10e67aca.js" defer></script><script src="/blog/assets/js/35.db3c811e.js" defer></script>
+  </body>
+</html>
