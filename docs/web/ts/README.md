@@ -1,6 +1,8 @@
-# 基础类型
+# 一、基础类型
 
 [Typescript 中文官网](https://www.tslang.cn/docs/handbook/basic-types.html)
+
+[文章借鉴](https://juejin.cn/post/6872111128135073806#heading-49)
 
 ## 1.String 类型
 

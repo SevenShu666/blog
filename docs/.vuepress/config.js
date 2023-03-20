@@ -18,7 +18,17 @@ module.exports = {
         "css/",
         "js/",
         "writeJs/",
-        { title: "Typescript", children: ["ts/"] },
+        {
+          title: "Typescript",
+          children: [
+            "ts/",
+            "ts/assert",
+            "ts/guard",
+            "ts/type",
+            "ts/crossType",
+            "ts/function",
+          ],
+        },
       ],
       "/node/": [
         "",
@@ -54,6 +64,8 @@ module.exports = {
             "DP/climbStairs",
             "DP/diffPath",
             "DP/climbStairsII",
+            "DP/integerBreak",
+            "DP/uniqueBinarySearchTrees",
           ],
         },
       ],
