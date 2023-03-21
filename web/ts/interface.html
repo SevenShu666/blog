@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>七、接口 | 小草屋</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/blog/favicon.ico">
+    <meta name="description" content="藏点书">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.570f249f.css" as="style"><link rel="preload" href="/blog/assets/js/app.df13d152.js" as="script"><link rel="preload" href="/blog/assets/js/2.10e67aca.js" as="script"><link rel="preload" href="/blog/assets/js/49.ec5b4693.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.909f91ce.js"><link rel="prefetch" href="/blog/assets/js/11.e84d675f.js"><link rel="prefetch" href="/blog/assets/js/12.3c756d0a.js"><link rel="prefetch" href="/blog/assets/js/13.31c5e2e9.js"><link rel="prefetch" href="/blog/assets/js/14.4ff725af.js"><link rel="prefetch" href="/blog/assets/js/15.775cc25f.js"><link rel="prefetch" href="/blog/assets/js/16.838220b3.js"><link rel="prefetch" href="/blog/assets/js/17.59d40218.js"><link rel="prefetch" href="/blog/assets/js/18.48d652b0.js"><link rel="prefetch" href="/blog/assets/js/19.c6c6f270.js"><link rel="prefetch" href="/blog/assets/js/20.2482b461.js"><link rel="prefetch" href="/blog/assets/js/21.57534268.js"><link rel="prefetch" href="/blog/assets/js/22.6821cfa7.js"><link rel="prefetch" href="/blog/assets/js/23.f6c4c5ef.js"><link rel="prefetch" href="/blog/assets/js/24.f5a4a4e0.js"><link rel="prefetch" href="/blog/assets/js/25.5840d946.js"><link rel="prefetch" href="/blog/assets/js/26.08af074a.js"><link rel="prefetch" href="/blog/assets/js/27.d0dc8d03.js"><link rel="prefetch" href="/blog/assets/js/28.b399306e.js"><link rel="prefetch" href="/blog/assets/js/29.d82536c2.js"><link rel="prefetch" href="/blog/assets/js/3.03b63f54.js"><link rel="prefetch" href="/blog/assets/js/30.e32471b0.js"><link rel="prefetch" href="/blog/assets/js/31.a8a5db6d.js"><link rel="prefetch" href="/blog/assets/js/32.e42ec418.js"><link rel="prefetch" href="/blog/assets/js/33.625c2e92.js"><link rel="prefetch" href="/blog/assets/js/34.cb11c898.js"><link rel="prefetch" href="/blog/assets/js/35.85a2641c.js"><link rel="prefetch" href="/blog/assets/js/36.7ec2872b.js"><link rel="prefetch" href="/blog/assets/js/37.343855c4.js"><link rel="prefetch" href="/blog/assets/js/38.9e00d0ae.js"><link rel="prefetch" href="/blog/assets/js/39.3ecb9920.js"><link rel="prefetch" href="/blog/assets/js/4.07d15ec5.js"><link rel="prefetch" href="/blog/assets/js/40.1e8854da.js"><link rel="prefetch" href="/blog/assets/js/41.8797e4df.js"><link rel="prefetch" href="/blog/assets/js/42.2da7582d.js"><link rel="prefetch" href="/blog/assets/js/43.e7154b3e.js"><link rel="prefetch" href="/blog/assets/js/44.83eeeddb.js"><link rel="prefetch" href="/blog/assets/js/45.941c460b.js"><link rel="prefetch" href="/blog/assets/js/46.4e230080.js"><link rel="prefetch" href="/blog/assets/js/47.9163c738.js"><link rel="prefetch" href="/blog/assets/js/48.1abf7aaa.js"><link rel="prefetch" href="/blog/assets/js/5.e33501ae.js"><link rel="prefetch" href="/blog/assets/js/50.3933aae2.js"><link rel="prefetch" href="/blog/assets/js/51.f3d76697.js"><link rel="prefetch" href="/blog/assets/js/52.ad0dead2.js"><link rel="prefetch" href="/blog/assets/js/6.f78f4531.js"><link rel="prefetch" href="/blog/assets/js/7.01e9a040.js"><link rel="prefetch" href="/blog/assets/js/8.ddbfe6c6.js"><link rel="prefetch" href="/blog/assets/js/9.64e9b99c.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.570f249f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">小草屋</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/blog/web/html/" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/blog/node/" class="nav-link">
+  node
+</a></div><div class="nav-item"><a href="/blog/arithmetic/" class="nav-link">
+  算法
+</a></div><div class="nav-item"><a href="/blog/miscellany/" class="nav-link">
+  杂项
+</a></div><div class="nav-item"><a href="/blog/workingDiary/" class="nav-link">
+  工作日记
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/blog/web/html/" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/blog/node/" class="nav-link">
+  node
+</a></div><div class="nav-item"><a href="/blog/arithmetic/" class="nav-link">
+  算法
+</a></div><div class="nav-item"><a href="/blog/miscellany/" class="nav-link">
+  杂项
+</a></div><div class="nav-item"><a href="/blog/workingDiary/" class="nav-link">
+  工作日记
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/blog/web/html/" class="sidebar-link">HTML 知识归纳</a></li><li><a href="/blog/web/css/" class="sidebar-link">CSS 知识归纳</a></li><li><a href="/blog/web/js/" class="sidebar-link">js 知识归纳</a></li><li><a href="/blog/web/writeJs/" class="sidebar-link">js 手写</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Typescript</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/web/ts/" aria-current="page" class="sidebar-link">一、基础类型</a></li><li><a href="/blog/web/ts/assert.html" class="sidebar-link">二、断言</a></li><li><a href="/blog/web/ts/guard.html" class="sidebar-link">三、类型守卫</a></li><li><a href="/blog/web/ts/type.html" class="sidebar-link">四、类型别名和联合类型</a></li><li><a href="/blog/web/ts/crossType.html" class="sidebar-link">五、交叉类型</a></li><li><a href="/blog/web/ts/function.html" class="sidebar-link">六、函数</a></li><li><a href="/blog/web/ts/interface.html" aria-current="page" class="active sidebar-link">七、接口</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_1-对象的形状" class="sidebar-link">1.对象的形状</a></li><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_2-可选-只读属性" class="sidebar-link">2.可选|只读属性</a></li><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_3-任意属性" class="sidebar-link">3.任意属性</a></li><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_4-接口与类型别名的区别" class="sidebar-link">4.接口与类型别名的区别</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_1-对象-函数" class="sidebar-link">1.对象/函数</a></li><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_2-其他类型" class="sidebar-link">2.其他类型</a></li><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_3-扩展" class="sidebar-link">3.扩展</a></li><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_4-implements" class="sidebar-link">4.Implements</a></li><li class="sidebar-sub-header"><a href="/blog/web/ts/interface.html#_5-合并声明" class="sidebar-link">5.合并声明</a></li></ul></li></ul></li><li><a href="/blog/web/ts/class.html" class="sidebar-link">八、类</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="七、接口"><a href="#七、接口" class="header-anchor">#</a> 七、接口</h1> <p>TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。</p> <h2 id="_1-对象的形状"><a href="#_1-对象的形状" class="header-anchor">#</a> 1.对象的形状</h2> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  age<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> semlinker<span class="token operator">:</span> Person <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">&quot;semlinker&quot;</span><span class="token punctuation">,</span>
+  age<span class="token operator">:</span> <span class="token number">33</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="_2-可选-只读属性"><a href="#_2-可选-只读属性" class="header-anchor">#</a> 2.可选|只读属性</h2> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+  <span class="token keyword">readonly</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  age<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>只读属性用于限制只能在对象刚刚创建的时候修改其值。此外 TypeScript 还提供了 <code>ReadonlyArray&lt;T&gt;</code> 类型，它与 <code>Array&lt;T&gt;</code> 相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改。</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">let</span> a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> ro<span class="token operator">:</span> ReadonlyArray<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span> <span class="token operator">=</span> a<span class="token punctuation">;</span>
+ro<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span> <span class="token comment">// error!</span>
+ro<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// error!</span>
+ro<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token comment">// error!</span>
+a <span class="token operator">=</span> ro<span class="token punctuation">;</span> <span class="token comment">// error!</span>
+</code></pre></div><h2 id="_3-任意属性"><a href="#_3-任意属性" class="header-anchor">#</a> 3.任意属性</h2> <p>有时候我们希望一个接口中除了包含必选和可选属性之外，还允许有其他的任意属性，这时我们可以使用 <strong>索引签名</strong> 的形式来满足上述要求。</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  age<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  <span class="token punctuation">[</span>propName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> p1<span class="token operator">:</span> Person <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">&quot;anna&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> p2<span class="token operator">:</span> Person <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">&quot;anna&quot;</span><span class="token punctuation">,</span> age<span class="token operator">:</span> <span class="token number">5</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> p3<span class="token operator">:</span> Person <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">&quot;anna&quot;</span><span class="token punctuation">,</span> sex<span class="token operator">:</span> <span class="token string">&quot;男&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="_4-接口与类型别名的区别"><a href="#_4-接口与类型别名的区别" class="header-anchor">#</a> 4.接口与类型别名的区别</h2> <h3 id="_1-对象-函数"><a href="#_1-对象-函数" class="header-anchor">#</a> 1.对象/函数</h3> <p>接口和类型别名都可以用来描述对象的形状或函数签名</p> <p><strong>接口</strong></p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">SetPoint</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">(</span>x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>类型别名</strong></p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">type</span> <span class="token class-name">Point</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> <span class="token class-name">SetPoint</span> <span class="token operator">=</span> <span class="token punctuation">(</span>x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_2-其他类型"><a href="#_2-其他类型" class="header-anchor">#</a> 2.其他类型</h3> <p>与接口类型不一样，类型别名可以用于一些其他类型，比如原始类型、联合类型和元组：</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">// primitive</span>
+<span class="token keyword">type</span> <span class="token class-name">Name</span> <span class="token operator">=</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+<span class="token comment">// object</span>
+<span class="token keyword">type</span> <span class="token class-name">PartialPointX</span> <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">type</span> <span class="token class-name">PartialPointY</span> <span class="token operator">=</span> <span class="token punctuation">{</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// union</span>
+<span class="token keyword">type</span> <span class="token class-name">PartialPoint</span> <span class="token operator">=</span> PartialPointX <span class="token operator">|</span> PartialPointY<span class="token punctuation">;</span>
+
+<span class="token comment">// tuple</span>
+<span class="token keyword">type</span> <span class="token class-name">Data</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token builtin">number</span><span class="token punctuation">,</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_3-扩展"><a href="#_3-扩展" class="header-anchor">#</a> 3.扩展</h3> <p>接口和类型别名都能够被扩展，但语法有所不同。</p> <p><strong>Interface extends interface</strong></p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name">PartialPointX</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword">interface</span> <span class="token class-name">Point</span> <span class="token keyword">extends</span> <span class="token class-name">PartialPointX</span> <span class="token punctuation">{</span> 
+  y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>Type alias extends type alias</strong></p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">type</span> <span class="token class-name">PartialPointX</span> <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">type</span> <span class="token class-name">Point</span> <span class="token operator">=</span> PartialPointX <span class="token operator">&amp;</span> <span class="token punctuation">{</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>Interface extends type alias</strong></p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">type</span> <span class="token class-name">PartialPointX</span> <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">interface</span> <span class="token class-name">Point</span> <span class="token keyword">extends</span> <span class="token class-name">PartialPointX</span> <span class="token punctuation">{</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+</code></pre></div><p><strong>Type alias extends interface</strong></p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name">PartialPointX</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword">type</span> <span class="token class-name">Point</span> <span class="token operator">=</span> PartialPointX <span class="token operator">&amp;</span> <span class="token punctuation">{</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_4-implements"><a href="#_4-implements" class="header-anchor">#</a> 4.Implements</h3> <p>类可以以相同的方式实现接口或类型别名，但类不能实现使用类型别名定义的联合类型：</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SomePoint</span> <span class="token keyword">implements</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span>
+  x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  y <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Point2</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SomePoint2</span> <span class="token keyword">implements</span> <span class="token class-name">Point2</span> <span class="token punctuation">{</span>
+  x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  y <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">PartialPoint</span> <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token operator">|</span> <span class="token punctuation">{</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// A class can only implement an object type or </span>
+<span class="token comment">// intersection of object types with statically known members.</span>
+<span class="token keyword">class</span> <span class="token class-name">SomePartialPoint</span> <span class="token keyword">implements</span> <span class="token class-name">PartialPoint</span> <span class="token punctuation">{</span> <span class="token comment">// Error</span>
+  x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  y <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_5-合并声明"><a href="#_5-合并声明" class="header-anchor">#</a> 5.合并声明</h3> <p>与类型别名不同，接口可以定义多次，会被自动合并为单个接口。</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">interface</span> <span class="token class-name"><span class="token constant">A</span></span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">interface</span> <span class="token class-name"><span class="token constant">A</span></span> <span class="token punctuation">{</span>
+  y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> <span class="token constant">A</span><span class="token operator">:</span> <span class="token constant">A</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  y<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/21/2023, 8:16:41 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/web/ts/function.html" class="prev">
+        六、函数
+      </a></span> <span class="next"><a href="/blog/web/ts/class.html">
+        八、类
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.df13d152.js" defer></script><script src="/blog/assets/js/2.10e67aca.js" defer></script><script src="/blog/assets/js/49.ec5b4693.js" defer></script>
+  </body>
+</html>
