@@ -68,6 +68,8 @@ module.exports = {
             "DP/climbStairsII",
             "DP/integerBreak",
             "DP/uniqueBinarySearchTrees",
+            "DP/partitionEqualSubsetSum",
+            "DP/lastStoneWeightII",
           ],
         },
       ],
