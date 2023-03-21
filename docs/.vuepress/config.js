@@ -27,6 +27,8 @@ module.exports = {
             "ts/type",
             "ts/crossType",
             "ts/function",
+            "ts/interface",
+            "ts/class",
           ],
         },
       ],
