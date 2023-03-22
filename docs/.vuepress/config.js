@@ -29,6 +29,7 @@ module.exports = {
             "ts/function",
             "ts/interface",
             "ts/class",
+            "ts/genericity",
           ],
         },
       ],
