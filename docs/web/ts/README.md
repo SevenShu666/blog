@@ -2,6 +2,8 @@
 
 [Typescript 中文官网](https://www.tslang.cn/docs/handbook/basic-types.html)
 
+[Typescript官网](https://www.typescriptlang.org/zh/docs/)
+
 [文章借鉴](https://juejin.cn/post/6872111128135073806#heading-49)
 
 ## 1.String 类型
