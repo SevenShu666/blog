@@ -53,7 +53,7 @@ dp[0] = 0;
 
 ### 4.确定遍历顺序
 
-如果使用一维dp数组，物品遍历的for循环放在外层，遍历背包的for循环放在内层，且内层for循环倒序遍历！
+[一维dp数组遍历顺序](/arithmetic/DP/linearArray.html)，一维dp的遍历，nums放在外循环，target在内循环，且内循环倒序。
 
 ### 5.举例推导dp数组
 
