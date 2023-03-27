@@ -416,11 +416,11 @@ cd -
 
 name: Deploy GitHub Pages
 
-# Controls when the action will run.
+# Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [master]
+    branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -439,11 +439,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-
+          
+      # 设置 Node
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          
       # 生成静态文件
       - name: Build
         run: npm install && yarn build
-
+ 
       # 部署到 GitHub Pages
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3

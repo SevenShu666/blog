@@ -103,7 +103,7 @@ enum Enum {
 
 ### 4.常量枚举
 
-使用`const `修饰枚举
+使用`const `修饰枚举，只能通过字符串方式访问
 
 ```ts
 const enum Direction {
