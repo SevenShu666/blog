@@ -57,6 +57,7 @@ module.exports = {
             "nest/database",
             "nest/entity",
             "nest/CURD",
+            "nest/typeorm",
           ],
         },
       ],
