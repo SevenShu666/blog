@@ -1,4 +1,4 @@
-# typeOrm关系
+# 十七、typeOrm关系
 
 [TypeORM 中文文档](https://typeorm.biunav.com/zh/)
 
