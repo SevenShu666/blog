@@ -344,4 +344,12 @@ git branch -d  Chapater6
 ## 回退版本
 
 git reset --hard 目标版本号
+
+## 项目提交到github上
+
+1. 本地建立git仓库：git init
+2. 提交文件：git add .	git commit -m ""
+3. 将github新建的项目与本地项目文件合并：git pull --rebase origin master
+4. 提交项目：git push -u origin master
+
 <Valine></Valine>
