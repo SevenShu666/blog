@@ -77,6 +77,7 @@ module.exports = {
             "DP/partitionEqualSubsetSum",
             "DP/lastStoneWeightII",
             "DP/targetSum",
+            "DP/onesAndZeroes",
           ],
         },
       ],

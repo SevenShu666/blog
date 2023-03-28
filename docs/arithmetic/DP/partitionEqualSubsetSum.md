@@ -45,7 +45,7 @@ dp[j]表示：容量为j的背包，所背的物品价值最大可以为dp[j]
 
 ### 4.确定遍历顺序
 
-[一维dp数组遍历顺序](/arithmetic/DP/linearArray.html)，一维dp的遍历，nums放在外循环，target在内循环，且内循环倒序。
+[01背包遍历顺序](/arithmetic/DP/linearArray.html)，一维dp的遍历，nums放在外循环，target在内循环，且内循环倒序。
 
 ### 5.举例推导dp数组
 
