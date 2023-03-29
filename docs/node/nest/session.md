@@ -1,0 +1,202 @@
+# 第十七章 Session
+
+`HTTP session`提供了一个用于在不同请求间存储信息的方法
+
+## 在Express中使用(默认)
+
+首先安装需要的包(@types/express-session是ts类型支持的包)：
+
+~~~shell
+$ npm i express-session
+$ npm i -D @types/express-session
+~~~
+
+安装完成后，将`express-session`配置为全局中间件（例如在`main.ts`文件中）。
+
+~~~ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { Response } from './common/response';
+import * as session from 'express-session';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalInterceptors(new Response());
+  app.use(
+    session({
+      secret: 'shu',
+      name: 's.session',
+      rolling: true,
+      cookie: { maxAge: null },
+    }),
+  );
+  await app.listen(3000);
+}
+bootstrap();
+~~~
+
+### 参数
+
+| secret  | 生成服务端session 签名 可以理解为加盐                        |
+| ------- | ------------------------------------------------------------ |
+| name    | 生成客户端cookie 的名字 默认 connect.sid                     |
+| cookie  | 设置返回到前端 key 的属性，默认值为{ path: ‘/’, httpOnly: true, secure: false, maxAge: null }。 |
+| rolling | 在每次请求时强行设置 cookie，这将重置 cookie 过期时间(默认:false) |
+
+## 验证码案例
+
+### 页面
+
+~~~vue
+<template>
+  <div class="wraps">
+    <el-form
+      :label-position="labelPosition"
+      label-width="100px"
+      :model="formLabelAlign"
+      style="max-width: 460px"
+    >
+      <el-form-item label="账号">
+        <el-input v-model="formLabelAlign.name" />
+      </el-form-item>
+      <el-form-item label="密码">
+        <el-input type="password" v-model="formLabelAlign.password" />
+      </el-form-item>
+      <el-form-item label="验证码">
+        <div style="display: flex">
+          <el-input v-model="formLabelAlign.code" />
+          <img @click="resetCode" :src="codeUrl" alt="" />
+        </div>
+      </el-form-item>
+      <el-form-item>
+        <el-button @click="submit">登录</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { onMounted, reactive, ref } from "vue";
+import { createUser } from "./server";
+
+const codeUrl = ref<string>("/api/user/code");
+
+const resetCode = () => (codeUrl.value = codeUrl.value + "?" + Math.random());
+
+const labelPosition = ref<string>("right");
+
+const formLabelAlign = reactive({
+  name: "",
+  password: "",
+  code: "",
+});
+
+const submit = async () => {
+  await createUser(formLabelAlign).then((res) => res.json());
+};
+</script>
+
+<style>
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.wraps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+</style>
+~~~
+
+~~~ts
+import axios from "axios";
+
+interface UserInfo {
+  name: string;
+  password: string;
+  code: string;
+}
+
+export const createUser = (params: UserInfo) =>
+  axios.post(`/api/user/create`, params).then((res) => res.data.data);
+
+~~~
+
+### nestjs
+
+#### 验证码插件 svgCaptcha
+
+~~~shell
+npm install svg-captcha -S
+~~~
+
+controller文件
+
+~~~ts
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Req,
+  Res,
+} from '@nestjs/common';
+import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import * as svgCaptcha from 'svg-captcha';
+
+@Controller('user')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  @Get('code')
+  createCaptcha(@Req() req, @Res() res) {
+    const captcha = svgCaptcha.create({
+      size: 4, // 生成几个验证码
+      fontSize: 50, // 文字大小
+      width: 100, // 宽度
+      height: 34, // 高度
+      background: '#cc9966', // 背景色
+    });
+
+    req.session.code = captcha.text; // 存储验证码记录到session
+    res.type('image/svg+xml');
+    res.send(captcha.data);
+  }
+
+  @Post('create')
+  createUser(@Req() req, @Body() body) {
+    console.log(req.session.code.toLocaleLowerCase());
+    console.log(body?.code?.toLocaleLowerCase());
+
+    if (
+      req.session.code.toLocaleLowerCase() === body?.code?.toLocaleLowerCase()
+    ) {
+      return {
+        message: '验证码正确',
+      };
+    } else {
+      return {
+        message: '验证码错误',
+      };
+    }
+  }
+}
+
+~~~
+
+
+
