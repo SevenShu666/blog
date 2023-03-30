@@ -1,4 +1,4 @@
-# 第十七章 Session
+# Session
 
 `HTTP session`提供了一个用于在不同请求间存储信息的方法
 

@@ -1,5 +1,7 @@
 # 最后一块石头的重量 II
 
+[力扣题目链接](https://leetcode.cn/problems/last-stone-weight-ii/)
+
 ## 题目
 
 有一堆石头，用整数数组 `stones` 表示。其中 `stones[i]` 表示第 `i` 块石头的重量。

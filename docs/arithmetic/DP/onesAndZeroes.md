@@ -1,5 +1,7 @@
 # 一和零
 
+[力扣题目链接](https://leetcode.cn/problems/ones-and-zeroes/)
+
 ## 题目
 
 给你一个二进制字符串数组 `strs` 和两个整数 `m` 和 `n` 。
@@ -115,3 +117,5 @@ var findMaxForm = function (strs, m, n) {
 };
 ~~~
 
+- 时间复杂度：O(n × m × len)，len为字符串长度
+- 空间复杂度：O(m)

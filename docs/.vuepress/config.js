@@ -79,6 +79,8 @@ module.exports = {
             "DP/lastStoneWeightII",
             "DP/targetSum",
             "DP/onesAndZeroes",
+            "DP/coinChangeII",
+            "DP/combinationSumIV",
           ],
         },
       ],
