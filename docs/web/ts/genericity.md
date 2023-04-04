@@ -557,7 +557,7 @@ type Eg = Extract<'key1' | 'key2', 'key1'>
 /**
  * 利用Pick实现Omit
  */
-type Omit = Pick<T, Exclude<keyof T, K>>;
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 ~~~
 
 ### Parameters
