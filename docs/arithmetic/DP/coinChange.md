@@ -1,0 +1,103 @@
+#  零钱兑换
+
+[力扣题目链接](https://leetcode.cn/problems/coin-change/)
+
+## 题目
+
+给你一个整数数组 `coins` ，表示不同面额的硬币；以及一个整数 `amount` ，表示总金额。
+
+计算并返回可以凑成总金额所需的 **最少的硬币个数** 。如果没有任何一种硬币组合能组成总金额，返回 `-1` 。
+
+你可以认为每种硬币的数量是无限的。
+
+ 
+
+**示例 1：**
+
+```
+输入：coins = [1, 2, 5], amount = 11
+输出：3 
+解释：11 = 5 + 5 + 1
+```
+
+**示例 2：**
+
+```
+输入：coins = [2], amount = 3
+输出：-1
+```
+
+**示例 3：**
+
+```
+输入：coins = [1], amount = 0
+输出：0
+```
+
+ 
+
+**提示：**
+
+- `1 <= coins.length <= 12`
+- `1 <= coins[i] <= 231 - 1`
+- `0 <= amount <= 104`
+
+## 思路
+
+### 1.确定dp数组以及下标的含义
+
+dp[j]：凑足总额为j所需钱币的最少个数为dp[j]
+
+### 2.确定递推公式
+
+dp[j]需要是最小个数，那么就由之前的最小个数dp[j - coins[i]]加上一个硬币得到，只需要取得dp[j - coins[i]]+1之中最小的一个就是dp[j]。
+
+~~~js
+dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1)
+~~~
+
+### 3.dp数组如何初始化
+
+dp[0]=0，需要取最小个数，所以其他数值需要大于amount
+
+### 4.确定遍历顺序
+
+求钱币的最小个数，所以钱币的顺序不影响结果，钱币数量可以无限使用，那么是完全背包。所以遍历的内循环是正序。
+
+~~~js
+for (let i = 0; i < n; i++) {
+  for (let j = coins[i]; j < INIT_DATA; j++) {
+    dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+  }
+}
+~~~
+
+### 5.举例推导dp数组
+
+输入：coins = [1, 2, 5], amount = 5
+
+| 下标  | 0    | 1    | 2    | 3    | 4    | 5    |
+| ----- | ---- | ---- | ---- | ---- | ---- | ---- |
+| dp[i] | 0    | 1    | 1    | 2    | 2    | 1    |
+
+## 代码
+
+~~~js
+var coinChange = function (coins, amount) {
+  const n = coins.length;
+  const INIT_DATA = amount + 1;
+  const dp = new Array(INIT_DATA).fill(INIT_DATA);
+  dp[0] = 0;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = coins[i]; j < INIT_DATA; j++) {
+      dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+    }
+  }
+
+  return dp[amount] === INIT_DATA ? -1 : dp[amount];
+};
+~~~
+
+- 时间复杂度：O(n × m )
+- 空间复杂度：O(m)
