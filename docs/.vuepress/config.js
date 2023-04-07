@@ -84,6 +84,7 @@ module.exports = {
             "DP/combinationSumIV",
             "DP/coinChange",
             "DP/perfectSquares",
+            "DP/wordBreak",
           ],
         },
       ],
