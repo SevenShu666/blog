@@ -1,3 +1,16 @@
+// const path = require("path");
+// const fs = require("fs");
+
+// const getFile = (path) => {
+//   console.log(path);
+//   const files = fs.readdirSync(path);
+//   for (const file of files) {
+//     console.log(file);
+//   }
+// };
+
+// getFile(path.resolve(__dirname, "../arithmetic/DP"));
+
 module.exports = {
   base: "/blog/",
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
