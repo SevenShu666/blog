@@ -1,15 +1,25 @@
 // const path = require("path");
 // const fs = require("fs");
 
-// const getFile = (path) => {
-//   console.log(path);
-//   const files = fs.readdirSync(path);
-//   for (const file of files) {
-//     console.log(file);
-//   }
+// const resolve = (dir) => {
+//   return path.resolve(__dirname, dir);
 // };
 
-// getFile(path.resolve(__dirname, "../arithmetic/DP"));
+// const getFile = (dir, prefix = "") => {
+//   const path = resolve(dir);
+//   const files = fs.readdirSync(path);
+//   const res = [];
+//   for (const file of files) {
+//     if (file) {
+//       const [fileName, fileType] = file.split(".");
+//       res.push(prefix + fileName);
+//     }
+//   }
+//   return res;
+// };
+
+// const DPchildren = getFile("../arithmetic/DP", "DP/");
+// console.log(DPchildren);
 
 module.exports = {
   base: "/blog/",
@@ -98,6 +108,8 @@ module.exports = {
             "DP/coinChange",
             "DP/perfectSquares",
             "DP/wordBreak",
+            "DP/multipleBackpack",
+            "DP/houseRobber",
           ],
         },
       ],
