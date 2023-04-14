@@ -1,26 +1,3 @@
-// const path = require("path");
-// const fs = require("fs");
-
-// const resolve = (dir) => {
-//   return path.resolve(__dirname, dir);
-// };
-
-// const getFile = (dir, prefix = "") => {
-//   const path = resolve(dir);
-//   const files = fs.readdirSync(path);
-//   const res = [];
-//   for (const file of files) {
-//     if (file) {
-//       const [fileName, fileType] = file.split(".");
-//       res.push(prefix + fileName);
-//     }
-//   }
-//   return res;
-// };
-
-// const DPchildren = getFile("../arithmetic/DP", "DP/");
-// console.log(DPchildren);
-
 module.exports = {
   base: "/blog/",
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
@@ -111,6 +88,7 @@ module.exports = {
             "DP/multipleBackpack",
             "DP/houseRobber",
             "DP/houseRobberII",
+            "DP/houseRobberIII",
           ],
         },
       ],
