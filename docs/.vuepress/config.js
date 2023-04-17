@@ -89,6 +89,7 @@ module.exports = {
             "DP/houseRobber",
             "DP/houseRobberII",
             "DP/houseRobberIII",
+            "DP/bestTimetoBuyandSellStock",
           ],
         },
       ],
