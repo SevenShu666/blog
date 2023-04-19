@@ -12,25 +12,28 @@ const resolve = (dir) => {
  * @return res:目录下文件名数组
  */
 const getFile = (dir, prefix = "") => {
-  const path = resolve(dir);
-  const files = fs.readdirSync(path);
-  const res = [];
-  files.sort((pre, cur) => {
-    return pre.split(".")[0] - cur.split(".")[0];
-  });
-  for (const file of files) {
-    if (file) {
-      const n = file.length;
-      const fileName = file.slice(0, n - 3);
-      if (fileName === "README") {
-        res.push(prefix);
-      } else {
-        res.push(prefix + fileName);
+  try {
+    const path = resolve(dir);
+    const res = [];
+    const files = fs.readdirSync(path);
+    files.sort((pre, cur) => {
+      return pre.split(".")[0] - cur.split(".")[0];
+    });
+    for (const file of files) {
+      if (file) {
+        const n = file.length;
+        const fileName = file.slice(0, n - 3);
+        if (fileName === "README") {
+          res.push(prefix);
+        } else {
+          res.push(prefix + fileName);
+        }
       }
     }
+    return res;
+  } catch (error) {
+    console.log(error);
   }
-
-  return res;
 };
 
 /**
