@@ -407,7 +407,7 @@ cd -
 
 #### 2.将ACCESS_TOKEN配置到仓库
 
-对应代码仓—>setting—>secrets and variables—>actions—>Repository secrets，给个名称 ACCESS_TOKEN
+对应代码仓—>setting—>secrets and variables—>actions—>Repository secrets，给个名称 ACCESS_TOKEN，将repo选项选上
 
 #### 3.创建 action
 
