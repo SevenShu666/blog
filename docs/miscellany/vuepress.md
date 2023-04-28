@@ -401,15 +401,19 @@ cd -
 
 ### Github Actions 自动部署
 
-#### 1.创建 action
-
-每个仓库都有一个 Actions，点进去，New workflow，创建一个后缀为.yml 的文件
-
-#### 2.ACCESS_TOKEN 的创建
+#### 1.ACCESS_TOKEN 的创建
 
 点击头像—>settings—>Developer settings—>Personal access tokens，创建的时候名称是 ACCESS_TOKEN
 
-#### 3.配置 deploy.yml
+#### 2.将ACCESS_TOKEN配置到仓库
+
+对应代码仓—>setting—>secrets and variables—>actions—>Repository secrets，给个名称 ACCESS_TOKEN
+
+#### 3.创建 action
+
+每个仓库都有一个 Actions，点进去，New workflow，创建一个后缀为.yml 的文件
+
+#### 4.配置 deploy.yml
 
 ```yml
 # This is a basic workflow to help you get started with Actions
