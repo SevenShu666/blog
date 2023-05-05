@@ -60,4 +60,17 @@ const miscellany = [...miscellanyChild];
 const workingDiaryChild = getFile("../../workingDiary");
 const workingDiary = [...workingDiaryChild];
 
-module.exports = { arithmetic, web, node, miscellany, workingDiary };
+/**
+ * electron目录结构
+ */
+const electron = getFile("../../electron");
+const electronDir = [...electron];
+
+module.exports = {
+  arithmetic,
+  web,
+  node,
+  miscellany,
+  workingDiary,
+  electronDir,
+};

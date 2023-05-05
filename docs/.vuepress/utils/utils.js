@@ -24,7 +24,7 @@ const getFile = (dir, prefix = "") => {
         const n = file.length;
         const fileName = file.slice(0, n - 3);
         if (fileName === "README") {
-          res.push(prefix);
+          res.unshift(prefix);
         } else {
           res.push(prefix + fileName);
         }

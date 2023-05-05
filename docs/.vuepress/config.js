@@ -4,6 +4,7 @@ const {
   node,
   miscellany,
   workingDiary,
+  electronDir,
 } = require("./fileConifg/index.js");
 
 const config = {
@@ -19,6 +20,7 @@ const config = {
       { text: "算法", link: "/arithmetic/" },
       { text: "杂项", link: "/miscellany/" },
       { text: "工作日记", link: "/workingDiary/" },
+      { text: "electron", link: "/electron/" },
     ],
     sidebar: {
       "/web/": web,
@@ -26,6 +28,7 @@ const config = {
       "/arithmetic/": arithmetic,
       "/miscellany/": miscellany,
       "/workingDiary/": workingDiary,
+      "/electron/": electronDir,
     },
     sidebarDepth: 2,
     lastUpdated: "Last Updated",
