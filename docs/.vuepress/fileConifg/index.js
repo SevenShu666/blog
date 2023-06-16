@@ -6,9 +6,14 @@ const { getFile } = require("../utils/utils");
 
 // 动态规划
 const dpChildren = getFile("../../arithmetic/DP", "DP/");
+const arrayChildren = getFile("../../arithmetic/array", "array/");
 
 const arithmetic = [
   "",
+  {
+    title: "数组",
+    children: arrayChildren,
+  },
   {
     title: "动态规划",
     children: dpChildren,
