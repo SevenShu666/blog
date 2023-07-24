@@ -6,13 +6,13 @@ const { getFile } = require("../utils/utils");
 
 // 动态规划
 const dpChildren = getFile("../../arithmetic/DP", "DP/");
-const arrayChildren = getFile("../../arithmetic/array", "array/");
+const listNodeChildren = getFile("../../arithmetic/array", "ListNode/");
 
 const arithmetic = [
   "",
   {
-    title: "数组",
-    children: arrayChildren,
+    title: "链表",
+    children: listNodeChildren,
   },
   {
     title: "动态规划",
