@@ -6,7 +6,7 @@ const { getFile } = require("../utils/utils");
 
 // 动态规划
 const dpChildren = getFile("../../arithmetic/DP", "DP/");
-const listNodeChildren = getFile("../../arithmetic/array", "ListNode/");
+const listNodeChildren = getFile("../../arithmetic/ListNode", "ListNode/");
 
 const arithmetic = [
   "",
