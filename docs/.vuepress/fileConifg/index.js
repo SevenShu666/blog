@@ -7,12 +7,17 @@ const { getFile } = require("../utils/utils");
 // 动态规划
 const dpChildren = getFile("../../arithmetic/DP", "DP/");
 const listNodeChildren = getFile("../../arithmetic/ListNode", "ListNode/");
+const mapChildren = getFile("../../arithmetic/Map", "Map/");
 
 const arithmetic = [
   "",
   {
     title: "链表",
     children: listNodeChildren,
+  },
+  {
+    title: "哈希表",
+    children: mapChildren,
   },
   {
     title: "动态规划",
