@@ -352,4 +352,9 @@ git reset --hard 目标版本号
 3. 将github新建的项目与本地项目文件合并：git pull --rebase origin master
 4. 提交项目：git push -u origin master
 
+## git fetch和git pull的区别
+
+- `git pull`：执行`git pull`命令时，Git会自动从远程仓库下载最新的提交并将其合并到当前分支。它是`git fetch`和`git merge`两个操作的组合。它会自动将远程仓库的更新合并到当前分支，并自动解决可能的冲突。一般情况下，使用`git pull`可以快速获取远程最新代码并合并到本地分支。
+- `git fetch`：执行`git fetch`命令时，Git会从远程仓库下载最新的提交，但不会自动将其合并到当前分支。它只是将远程仓库的最新代码下载到本地，并更新本地仓库中远程分支的指针位置。这样，你可以在本地查看远程仓库的更新情况，进行代码比较或其他操作。但它不会修改你当前所在的分支。
+
 <Valine></Valine>
