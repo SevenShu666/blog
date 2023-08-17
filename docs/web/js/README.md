@@ -391,4 +391,161 @@ console.log(child1.age);
 4. 执行构造函数，并传入参数
 5. 如果构造函数没有显式返回一个对象，则返回新对象
 
+## 二十二、解决跨域
+
+> 同源策略：浏览器的安全策略，同源需要端口、域名和协议三者相同，只要有一个不同就会发生跨域
+
+1. 通过jsonp跨域
+
+   ~~~js
+   function jsonp(url, params, callback) {
+     // 生成唯一的回调函数名
+     const callbackName = 'jsonp_' + Date.now();
+   
+     // 将参数拼接到 URL 中
+     const queryString = Object.keys(params)
+       .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+       .join('&');
+   
+     // 创建 script 元素
+     const script = document.createElement('script');
+     script.src = url + '?' + queryString + '&callback=' + callbackName;
+   
+     // 定义回调函数
+     window[callbackName] = function(data) {
+       // 调用回调函数
+       callback(data);
+   
+       // 删除 script 元素和回调函数
+       document.head.removeChild(script);
+       delete window[callbackName];
+     };
+   
+     // 将 script 元素添加到页面中
+     document.head.appendChild(script);
+   }
+   ~~~
+
+2. `nginx`代理跨域
+
+3. nodejs中间件代理跨域
+
+   - 使用nodejs构建一个中间件，在服务器代理请求，将跨域请求转发到同源接口，然后将响应返回给前端
+
+4. CORS（跨域资源共享）
+
+   - 在响应头部设置`Access-Control-Allow-Origin`，允许访问的域名
+
+5. `webSocket`
+
+   - `webSocket`不受同源策略限制
+
+## 二十三、模块化开发
+
+1. 立即执行函数模式
+
+   - 使用立即执行函数创建模块，将私有成员放在函数作用域内，不直接暴漏给外部
+
+   - 通过返回一个包含公共方法的对象，使这些方法可以在外部访问
+
+   - ~~~js
+     var module = (function() {
+       var privateVar = 'Private Variable';
+     
+       function privateMethod() {
+         console.log('This is a private method');
+       }
+     
+       function publicMethod() {
+         console.log('This is a public method');
+       }
+     
+       return {
+         publicMethod: publicMethod
+       };
+     })();
+     
+     module.publicMethod();
+     ~~~
+
+2. `commonJS`
+
+   - 使用`require`导入模块，使用`module.exports`或`exports`导出模块
+   - 适合nodejs环境
+
+3. ES Modules
+
+   - 使用`import`导入模块，使用`export`导出模块
+   - 适用于现代浏览器环境和支持ES6模块的工具链
+
+4. AMD
+
+   - 适用`define`定义模块，通过异步加载模块
+   - 适用于浏览器环境和需要按需加载模块的场景
+
+## 二十四、异步加载js
+
+1. 设置`<script>`属性`async`
+2. 设置`<script>`属性`defer`
+3. 动态创建`script DOM`
+4. 异步加载库`LABjs`
+
+## 二十五、内存泄漏操作
+
+> javascript内存泄漏指对象在不需要使用它时仍存在，导致占用的内存不能使用或回收
+
+1. 闭包函数
+2. 循环引用
+3. 控制台日志
+4. 定时器
+
+## 二十六、XML和JSON的区别
+
+`XML`（可扩展标记语言）和`JSON`（javascript对象表示法）是两种常用的数据格式
+
+1. 数据体积方面
+   - `JSON`相对于`XML`来说，数据体积小，所以传输的速度更快
+2. 数据交互方面
+   - `JSON`与javascript的交互更加方便，因为`JSON`数据可以直接被js解析和处理，无需额外的转换步骤
+   - `XML`需要使用DOM操作来解析和处理数据，相对而言更加复杂
+3. 数据描述方面
+   - `XML`对数据的描述性较强，它使用标签来标识数据的结构和含义，可以自定义标签名，使数据更具有可读性和可扩展性
+
+## 二十七、web安全及防护原理
+
+### 1.跨站脚本攻击（XSS）
+
+> 指攻击者在WEB页面里插入恶意HTML标签或者javascript代码
+
+- 防护原理
+  - 对用户的输入进行合适的转义和过滤，转义符（\）进行转义
+  - CSP白名单设置
+
+### 2.跨站请求伪造（CSRF）
+
+> 利用用户的登录态，发起恶意请求
+
+- 防护原理
+  - 请求时带上验证信息，比如token和验证码
+  - 验证请求来源
+
+## 二十八、设计模式
+
+1. 工厂模式（Factory Pattern）
+   - 优点：封装了对象的创建过程，降低了耦合性，提高了灵活性和可扩展性
+   - 缺点：增加了代码的复杂性，需要创建工厂类
+   - 使用场景：当需要根据不同条件创建不同对象时，可以使用工厂模式
+2. 单例模式（Singleton Pattern）
+   - 优点：确保一个类只有一个实例，节省系统资源，提供全局访问点
+   - 缺点：可能引入全局状态，并不利于扩展和测试
+   - 适用场景：当需要全局唯一的对象实例时，例如日志记录器、全局配置对象等
+3. 观察者模式（Observer Pattern）
+   - 优点：实现了对象之间的松耦合，支持广播通信，当一个对象状态发生变化时，可以通知依赖它的其他对象进行更新
+   - 缺点：可能导致性能问题和内存泄漏，需要合理的管理观察者列表
+   - 适用场景：当需要实现对象之间的一对多关系，一个对象改变需要通知其他多个对象
+4. 发布订阅模式（Publish-Subscribe Pattern）
+   - 优点：解耦了发布者和订阅者，使它们可以独立变化，增加了代码的灵活性和可维护性
+   - 缺点：可能会导致发布者过度发布消息，造成性能问题
+   - 适用场景：当存在一对多的关系，一个对象的状态变化需要通知多个其他对象时，可以使用发布订阅模式。
+
 <Valine></Valine>
