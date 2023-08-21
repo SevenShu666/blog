@@ -644,4 +644,43 @@ console.log(child1.age);
 - 可靠性：封装和继承等机制可以提高代码的可靠性和可测试性，减少错误的发生和影响范围。
 - 可理解性：面向对象的代码通常具有良好的可读性和可理解性，对象和类的设计使得代码更加直观和自然。
 
+## 三十七、JS判断数组
+
+1. `instanceof`：`arr instanceof Array`
+2. `constructor`：`arr.constructor === Array`
+3. `Object.prototype.toString.call()`：`Object.prototype.toString.call(arr) === '[object Array]'`
+4. `isArray()`：`isArray(arr)`
+
+## 三十八、map和forEach
+
+- map和forEach都是遍历数组的方法
+- map方法会生成一个新数组，并将每次遍历的返回值顺序放入新数组中。而forEach方法没有返回值，仅用于遍历数组
+
+## 三十九、函数式编程
+
+通过组合和应用函数来进行开发程序
+
+特点：
+
+1. 纯函数：函数的输出只由输入决定，不会产生副作用，对同样的输入始终返回相同的输出。
+2. 不可变性：数据一旦创建就不能被修改，任何对数据的修改都会创建一个新的数据副本
+3. 高阶函数：函数可以作为参数传递给其他函数，也可以作为返回值返回
+4. 函数组合：通过将多个函数组合成一个新的函数，可以实现更复杂的逻辑
+5. 惰性计算：只在需要的时候才进行计算，避免是不必要的计算
+
+## 四十、箭头函数和普通函数
+
+1. this指向：箭头函数没有自己的this， 它会捕获所在上下文的this值。普通函数的this是在运行时确定的，根据调用方式决定
+2. 不可作为构造函数：箭头函数不能使用new关键字创建实例，它没有自己的`prototype`属性，无法进行实例化
+3. 无`arguments`对象：箭头函数没有自己的`arguments`对象，可以使用`Rest`参数来代替
+
+## 四十一、阻止冒泡和默认事件
+
+- 阻止冒泡
+  - `event.stopPropagation()`
+  - `event.cancelBubble = true`，IE浏览器
+- 默认事件
+  - `event.preventDefault()`
+  - `return false`，IE浏览器
+
 <Valine></Valine>
