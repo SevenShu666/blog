@@ -4,7 +4,7 @@ const {
   node,
   miscellany,
   workingDiary,
-  electronDir,
+  electron,
 } = require("./fileConifg/index.js");
 
 const config = {
@@ -28,7 +28,7 @@ const config = {
       "/arithmetic/": arithmetic,
       "/miscellany/": miscellany,
       "/workingDiary/": workingDiary,
-      "/electron/": electronDir,
+      "/electron/": electron,
     },
     sidebarDepth: 2,
     lastUpdated: "Last Updated",
