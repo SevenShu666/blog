@@ -293,6 +293,7 @@ for (let i = 0; i < arr.length; i++) {
   const randomIndex = Math.round(Math.random() * (arr.length - i - 1)) + i;
   [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
 }
+console.log(arr);
 
 // 倒序
 let length = arr.length,
@@ -306,7 +307,7 @@ while (length) {
   arr[random] = temp;
 }
 
-console.log(obj);
+console.log(arr);
 ```
 
 ## 十、数组的 filter 方法

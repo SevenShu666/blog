@@ -683,4 +683,160 @@ console.log(child1.age);
   - `event.preventDefault()`
   - `return false`，IE浏览器
 
+## 四十二、异步编程的方法
+
+1. 回调函数：在异步操作完成后，通过回调函数来处理结果
+   - 优点：简单、容易理解
+   - 缺点：不利于维护，代码耦合度高
+2. Promise：使用Promise对象可以更方便地处理异步操作的结果和错误
+   - 优点：可以利用then方法，进行链式写法；可以书写错误时回调函数
+   - 缺点：编写和理解，相对困难
+3. Generator函数：使用Generator函数可以实现函数体内外的数据交换和错误处理
+   - 优点：函数体内外的数据交换、错误处理机制
+   - 缺点：流程管理不方便
+4. async函数：async函数是Generator函数的语法糖，可以更方便地编写和理解异步代码
+   - 优点：内置执行器、更好的语义、更广的适用性、返回的是Promise、结构清晰
+   - 缺点：错误处理机制
+
+## 四十三、添加、移除、移动、复制、创建和查找节点
+
+- 创建节点
+
+~~~js
+document.createElement(tagName); // 创建一个指定标签名的元素节点
+document.createTextNode(text); // 创建一个包含指定文本的文本节点
+document.createDocumentFragment(); // 创建一个空的文档片段节点
+~~~
+
+- 添加、移除、替换、插入节点
+
+~~~js
+parentNode.appendChild(node); // 在父节点的末尾添加一个子节点
+parentNode.removeChild(node); // 从父节点中移除指定的子节点
+parentNode.replaceChild(newNode, oldNode); // 用新节点替换指定的旧节点
+parentNode.insertBefore(newNode, referenceNode); // 在参考节点之前插入一个新节点
+~~~
+
+- 查找节点
+
+~~~js
+document.getElementsByTagName(tagName); // 返回指定标签名的元素节点集合
+document.getElementsByName(name); // 返回具有指定名称的元素节点集合
+document.getElementById(id); // 返回具有指定 id 的元素节点
+~~~
+
+## 四十四、Javascript全局函数和全局变量
+
+**全局变量**
+
+- `Infinity` 代表正的无穷大的数值。
+- `NaN` 指示某个值是不是数字值。
+- `undefined` 指示未定义的值。
+- `Date` 表示日期和时间的对象。
+- `Math` 包含了数学相关的函数和常量。
+- `JSON` 用于解析和序列化 JSON 数据的对象。
+- `console` 用于在控制台输出信息的对象。
+- `document` 表示当前 HTML 文档的对象。
+- `window` 表示浏览器窗口的对象。
+
+**全局函数**
+
+- `decodeURI()` 解码某个编码的 `URI`。
+- `decodeURIComponent()` 解码一个编码的 `URI` 组件。
+- `encodeURI()` 把字符串编码为 URI。
+- `encodeURIComponent()` 把字符串编码为 `URI` 组件。
+- `escape()` 对字符串进行编码。
+- `eval()` 计算 `JavaScript` 字符串，并把它作为脚本代码来执行。
+- `isFinite()` 检查某个值是否为有穷大的数。
+- `isNaN()` 检查某个值是否是数字。
+- `Number()` 把对象的值转换为数字。
+- `parseInt()` 解析一个字符串并返回一个整数。
+- `String()` 把对象的值转换为字符串。
+- `unescape()` 对由`escape()` 编码的字符串进行解码
+- `setTimeout()` 在指定的延迟时间后执行一次函数。
+- `setInterval()` 每隔指定的时间间隔重复执行函数。
+- `clearTimeout()` 取消使用 `setTimeout()` 创建的延迟执行。
+- `clearInterval()` 取消使用 `setInterval()` 创建的重复执行。
+- `alert()` 在浏览器中显示一个警告框。
+- `confirm()` 在浏览器中显示一个确认框。
+- `prompt()` 在浏览器中显示一个提示框，接收用户输入
+
+## 四十五、javascript垃圾回收方法
+
+正常情况下，现代的 JavaScript 引擎会使用标记清除（mark and sweep）算法作为主要的垃圾回收方法。引用计数（reference counting）在某些老旧的 JavaScript 引擎中可能会被使用。
+
+### 标记清除
+
+1. 垃圾回收器会在运行时给存储在内存中的所有变量加上标记。
+2. 垃圾回收器会从根对象开始，递归遍历所有的引用，标记它们为“进入环境”。
+3. 在遍历完成后，垃圾回收器会对未被标记的变量进行清除，即将其回收内存空间。
+4. 被清除的内存空间将被重新分配给后续的变量使用。
+
+### 引用计数
+
+1. 对于每个对象，引擎会维护一个引用计数器，用于记录当前有多少个引用指向该对象。
+2. 当一个引用指向对象时，引用计数器加一；当一个引用不再指向对象时，引用计数器减一。
+3. 当引用计数器为零时，说明该对象没有被引用，可以将其回收内存空间。
+4. 引用计数算法容易出现循环引用的问题，即两个或多个对象互相引用，但没有被其他对象引用，导致引用计数器无法归零，造成内存泄漏。
+
+## 四十六、JavaScript数组和对象原生方法
+
+### 数组方法
+
+- `arr.concat(arr1, arr2, arrn)`：连接多个数组并返回新数组。
+- `arr.copyWithin(target, start, end)`：将数组的一部分复制到同一数组中的另一个位置。
+- `arr.entries()`：返回一个包含数组键值对的迭代器对象。
+- `arr.every(callbackFn, thisArg)`：测试数组中的所有元素是否都通过了指定函数的测试。
+- `arr.fill(value, start, end)`：用静态值填充数组的一部分。
+- `arr.filter(callbackFn, thisArg)`：创建一个新数组，其中包含通过指定函数筛选的所有元素。
+- `arr.find(callbackFn, thisArg)`：返回数组中第一个满足测试函数的元素的值。
+- `arr.findIndex(callbackFn, thisArg)`：返回数组中第一个满足测试函数的元素的索引。
+- `arr.flat(depth)`：将多维数组展平为一维数组。
+- `arr.flatMap(callbackFn, thisArg)`：首先使用映射函数映射每个元素，然后将结果展平为一维数组。
+- `arr.forEach(callbackFn, thisArg)`：对数组中的每个元素执行指定函数。
+- `arr.includes(searchElement, fromIndex)`：判断数组中是否包含指定元素。
+- `arr.indexOf(searchElement, fromIndex)`：返回指定元素在数组中首次出现的索引。
+- `arr.join(separator)`：将数组元素连接为一个字符串，并使用指定的分隔符。
+- `arr.keys()`：返回一个包含数组键的迭代器对象。
+- `arr.lastIndexOf(searchElement, fromIndex)`：返回指定元素在数组中最后一次出现的索引。
+- `arr.map(callbackFn, thisArg)`：创建一个新数组，其中包含通过指定函数对每个元素进行处理后的结果。
+- `arr.pop()`：移除并返回数组的最后一个元素。
+- `arr.push(element1, element2, ..., elementN)`：向数组末尾添加一个或多个元素，并返回新的长度。
+- `arr.reduce(callbackFn, initialValue)`：对数组中的所有元素执行指定的累积函数，返回累积结果。
+- `arr.reduceRight(callbackFn, initialValue)`：对数组中的所有元素执行指定的累积函数（从右到左），返回累积结果。
+- `arr.reverse()`：反转数组中元素的顺序。
+- `arr.shift()`：移除并返回数组的第一个元素。
+- `arr.slice(start, end)`：从数组中提取指定范围的元素，并返回一个新数组。
+- `arr.some(callbackFn, thisArg)`：测试数组中的至少一个元素是否通过了指定函数的测试。
+- `arr.sort(compareFunction)`：对数组元素进行排序，可以传入自定义的比较函数。
+- `arr.splice(start, deleteCount, item1, item2, ...)`：从数组中添加/删除元素，并返回被删除的元素。
+- `arr.toLocaleString()`：将数组中的元素转换为字符串，并返回该字符串。
+- `arr.toString()`：将数组中的元素转换为字符串，并返回该字符串。
+- `arr.unshift(element1, element2, ..., elementN)`：向数组开头添加一个或多个元素，并返回新的长度。
+- `arr.values()`：返回一个包含数组值的迭代器对象。
+
+### 对象方法
+
+- `Object.assign(target, ...sources)`：将一个或多个源对象的属性复制到目标对象，并返回目标对象。
+- `Object.create(proto, [propertiesObject])`：使用指定的原型对象和属性创建一个新对象。
+- `Object.defineProperties(obj, props)`：定义一个或多个对象的新属性或修改现有属性的配置。
+- `Object.defineProperty(obj, prop, descriptor)`：定义一个新属性或修改现有属性的配置。
+- `Object.entries(obj)`：返回一个包含对象自身可枚举属性的键值对数组。
+- `Object.freeze(obj)`：冻结对象，使其属性不可修改。
+- `Object.fromEntries(entries)`：将键值对列表转换为对象。
+- `Object.getOwnPropertyDescriptor(obj, prop)`：返回对象属性的描述符。
+- `Object.getOwnPropertyDescriptors(obj)`：返回对象所有属性的描述符。
+- `Object.getOwnPropertyNames(obj)`：返回一个数组，包含对象自身的所有属性名称。
+- `Object.getOwnPropertySymbols(obj)`：返回一个数组，包含对象自身的所有Symbol属性。
+- `Object.getPrototypeOf(obj)`：返回指定对象的原型。
+- `Object.is(value1, value2)`：判断两个值是否相同。
+- `Object.isExtensible(obj)`：判断对象是否可扩展。
+- `Object.isFrozen(obj)`：判断对象是否已被冻结。
+- `Object.isSealed(obj)`：判断对象是否已被密封。
+- `Object.keys(obj)`：返回一个数组，包含对象自身的所有可枚举属性名称。
+- `Object.preventExtensions(obj)`：阻止对象扩展，使其不可添加新属性。
+- `Object.seal(obj)`：将对象密封，使其属性不可添加、删除或配置。
+- `Object.setPrototypeOf(obj, prototype)`：设置对象的原型。
+- `Object.values(obj)`：返回一个包含对象自身可枚举属性的值的数组。
+
 <Valine></Valine>
