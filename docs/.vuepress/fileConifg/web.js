@@ -9,6 +9,7 @@ const web = [
   "html/",
   "css/",
   "js/",
+  "http/",
   "writeJs/",
   {
     title: "Typescript",
