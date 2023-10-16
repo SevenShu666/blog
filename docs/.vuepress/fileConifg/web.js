@@ -11,6 +11,7 @@ const web = [
   "js/",
   "http/",
   "writeJs/",
+  "regExp/",
   {
     title: "Typescript",
     children: tsChildren,
