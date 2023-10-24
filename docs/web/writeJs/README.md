@@ -150,12 +150,15 @@ for (let i = 1; i <= 4; i++) {
 ## 五、日期格式化
 
 ```js
-function dateFormat(dateInput, format) {
-  const year = dateInput.getFullYear();
-  const month = dateInput.getMonth() + 1;
-  const day = dateInput.getDate();
-  format = format.replace(/yyyy/, year).replace(/mm/, month).replace(/dd/, day);
+function dateFormat(date, format) {
+  if (/^\d{13}$/.test(date)) {
+    date = new Date(date);
+  }
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
 
+  format = format.replace("yyyy", year).replace("mm", month).replace("dd", day);
   return format;
 }
 
@@ -199,6 +202,7 @@ function shallowCopy(obj) {
  * 1.JSON.stringify() JSON.parse()
  * 2.lodash插件cloneDeep()
  */
+// map防止循环引用
 function cloneDeep(obj, map = new WeakMap()) {
   if (!isObject(obj)) return obj;
   const res = Array.isArray(obj) ? [] : {};
@@ -246,7 +250,7 @@ console.log(obj2);
 ## 七、非负大整数相加
 
 ```js
-function sumBigBumber(a, b) {
+function sumBigNumber(a, b) {
   let res = "";
   let temp = 0;
 
@@ -262,7 +266,7 @@ function sumBigBumber(a, b) {
   return res.replace(/^0+/, "");
 }
 
-console.log(sumBigBumber("19007199254740992", "9007199254740993"));
+console.log(sumBigNumber("19007199254740992", "9007199254740993"));
 ```
 
 ## 八、类数组转换成数组
@@ -401,11 +405,20 @@ console.log(repeat2(s, 2));
 ```js
 let str = "123";
 
-function strReverse(str) {
+function strReverse1(str) {
   return str.split("").reverse().join("");
 }
 
-console.log(strReverse(str));
+function strReverse2(str, copy, i) {
+  if (i === str.length) return copy;
+
+  copy = str[i] + copy;
+  return strReverse(str, copy, i + 1);
+}
+
+
+console.log(strReverse1(str));
+console.log(strReverse2("12345", "", 0));
 ```
 
 ## 十五、add(1)(2)(3)方法
@@ -1626,5 +1639,123 @@ let person = {
 
 console.log(render(template, person));
 ```
+
+## 四十五、位运算符
+
+### 1.& 按位与
+
+&是二元运算符，它以特定的方式的方式组合操作数中对应的位，如果对应的位都为1，那么结果就是1， 如果任意一个位是0 则结果就是0。
+
+1 & 3的结果为1
+
+那我们来看看他是怎么运行的
+
+1的二进制表示为 0 0 0 0 0 0 1
+
+3的二进制表示为 0 0 0 0 0 1 1
+
+根据 & 的规则 得到的结果为 0 0 0 0 0 0 0 1,十进制表示就是1
+
+### 2.| 按位或
+
+|运算符跟&的区别在于如果对应的位中任一个操作数为1 那么结果就是1。
+
+1的二进制表示为 0 0 0 0 0 0 1
+
+3的二进制表示为 0 0 0 0 0 1 1
+
+所以 1 | 3的结果为3
+
+### 3.^ 按位异或
+
+^运算符跟|类似，但有一点不同的是 如果两个操作位都为1的话，结果产生0。
+
+1的二进制表示为 0 0 0 0 0 0 1
+
+3的二进制表示为 0 0 0 0 0 1 1
+
+所以 1 ^ 3的结果为2
+
+### 4.~ 按位非
+
+~运算符是对位求反，1变0,0变1，也就是求二进制的反码
+
+1的二进制表示为 0 0 0 0 0 0 1
+
+所以 ~1 的结果是-2
+
+### 5.>> 右移
+
+\>>运算符使指定值的二进制所有位都右移规定的次数，对于其移动规则只需记住符号位不变，左边补上符号位即按二进制形式把所有的数字向右移动对应的位数，低位移出(舍弃)，高位的空位补符号位，即正数补零，负数补1。
+
+1的二进制表示为 0 0 0 0 0 0 1
+
+所以 1>>1的结果为0
+
+### 6.<< 左移
+
+<<运算符使指定值的二进制所有位都左移规定的次数，对于其移动规则只需记住丢弃最高位，0补最低位即按二进制形式把所有的数字向左移动对应的位数，高位移出(舍弃)，低位的空位补零。
+
+1的二进制表示为 0 0 0 0 0 0 1
+
+所以 1<<1的结果为2 
+
+### 7.>>> 无符号右移
+
+\>>>运算符忽略了符号位扩展，0补最高位，但是只是对32位和64位的值有意义。
+
+### 8.位运算符在js中的妙用：
+
+#### 1、使用&运算符判断一个数的奇偶
+
+偶数 & 1 = 0
+
+奇数 & 1 = 1
+
+那么0&1=0,1&1=1
+
+#### 2、使用~~，>>,<<,>>>,|来取整
+
+~~3.14 = 3
+
+3.14 >> 0 = 3
+
+3.14 << 0 = 3 
+
+3.14 | 0 = 3
+
+3.14 >>> 0 = 3(>>>不可对负数取整)
+
+注意：~~-3.14 = -3 其它的一样
+
+#### 3、使用<<,>>来计算乘除
+
+乘法：
+
+1*2 = 2
+
+1<<1 = 1(2/2的一次方)
+
+#### 4、利用^来完成比较两个数是否相等
+
+1 ^ 1 = 0
+
+1 ^ 非1数 ！=0
+
+所以同一个数……同一个数等于0，否则不等于0
+
+#### 5、使用^来完成值交换
+
+a = 1
+
+b = 2
+
+a ^= b
+
+b ^= a
+
+a ^= b
+
+结果a=2，b=1
 
 <Valine></Valine>
