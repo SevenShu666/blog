@@ -610,7 +610,7 @@ const fn2 = function (name, age) {
 eventBus.on("aaa", fn1);
 eventBus.on("aaa", fn2);
 // eventBus.off("aaa", fn2);
-eventBus.emit("aaa", false, "anna", 20);
+eventBus.emit("aaa", "anna", 20);
 ```
 
 ## 二十一、数字每千分位用逗号隔开
