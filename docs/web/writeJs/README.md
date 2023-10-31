@@ -624,7 +624,7 @@ function format(n) {
 
   if (point >= 0) {
     integer = num.slice(0, point);
-    decimals = "." + num.slice(point + 1);
+    decimals = num.slice(point);
   }
 
   let len = integer.length;
@@ -752,43 +752,30 @@ function uniqueArray3(arr) {
 console.log(uniqueArray3(arr));
 ```
 
-## 二十五、图片懒加载
+## 二十五、字符串模板
 
-```js
-const imgList = document.getElementsByTagName("img");
-const length = imgList.length;
-let count = 0;
-imgLazyLoad();
-function throttle(fn, delay) {
-  let timer = null;
-  return function () {
-    if (!timer) {
-      timer = setTimeout(() => {
-        fn.apply(this, arguments);
-        timer = null;
-      }, delay);
-    }
-  };
+~~~js
+function render(template, data) {
+  const reg = /\{\{(\w+)\}\}/;
+
+  if (reg.test(template)) {
+    const name = reg.exec(template)[1];
+    template = template.replace(reg, data[name]);
+    return render(template, data);
+  }
+
+  return template;
 }
 
-const imgLazyLoad = function () {
-  const windowHeight = window.innerHeight;
-  for (let i = count; i < length; i++) {
-    const rect = imgList[i].getBoundingClientRect();
-    if (rect.top < windowHeight) {
-      if (imgList[i].getAttribute("src") == "loading.gif") {
-        imgList[i].src = imgList[i].getAttribute("data-src");
-      }
-      if (count === length) {
-        document.removeEventListener("scroll", throttle(imgLazyLoad, 200));
-      }
-      count++;
-    }
-  }
+let template = "我是{{name}}，年龄{{age}}，性别{{sex}}";
+let person = {
+  name: "布兰",
+  age: 12,
+  sex: "body",
 };
 
-document.addEventListener("scroll", throttle(imgLazyLoad, 200));
-```
+console.log(render(template, person));
+~~~
 
 ## 二十六、循环打印红黄绿灯
 
@@ -847,15 +834,18 @@ const step2 = function () {
 
 // 使用async/await实现
 const task3 = function (timer, light) {
-  setTimeout(() => {
-    if (light === "red") {
-      red();
-    } else if (light === "yellow") {
-      yellow();
-    } else if (light === "green") {
-      green();
-    }
-  }, timer);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (light === "red") {
+        red();
+      } else if (light === "yellow") {
+        yellow();
+      } else if (light === "green") {
+        green();
+      }
+      resolve();
+    }, timer);
+  });
 };
 
 const step3 = async () => {
@@ -1027,7 +1017,7 @@ const jsonp = function (url, params, callback) {
     dataString += `${ket}=${params[key]}&`;
   }
 
-  let callbackName = "my_json_cb" + Math.random().toString().repalce(/./, "");
+  let callbackName = "my_json_cb" + Math.random().toString().repalce(/\./, "");
   dataString += "callback=" + callbackName;
 
   let scriptEle = document.createElement("script");
@@ -1058,7 +1048,7 @@ function newOperate(ctor) {
 
   if (
     typeof res === "function" ||
-    (typeof res === "object" && typeof res !== null)
+    (typeof res === "object" && res !== null)
   ) {
     return res;
   }
@@ -1615,32 +1605,7 @@ function trim(str) {
 }
 ```
 
-## 四十四、字符串模板
-
-```js
-function render(template, data) {
-  const reg = /\{\{(\w+)\}\}/;
-
-  if (reg.test(template)) {
-    const name = reg.exec(template)[1];
-    template = template.replace(reg, data[name]);
-    return render(template, data);
-  }
-
-  return template;
-}
-
-let template = "我是{{name}}，年龄{{age}}，性别{{sex}}";
-let person = {
-  name: "布兰",
-  age: 12,
-  sex: "body",
-};
-
-console.log(render(template, person));
-```
-
-## 四十五、位运算符
+## 四十四、位运算符
 
 ### 1.& 按位与
 
