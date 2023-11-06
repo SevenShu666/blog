@@ -31,6 +31,7 @@ const monotoneStackChildren = getFile(
   "../../arithmetic/MonotoneStack",
   "MonotoneStack/"
 );
+const sortChildren = getFile("../../arithmetic/Sort", "Sort/");
 
 const arithmetic = [
   "",
@@ -73,6 +74,10 @@ const arithmetic = [
   {
     title: "单调栈",
     children: monotoneStackChildren,
+  },
+  {
+    title: "排序",
+    children: sortChildren,
   },
 ];
 
