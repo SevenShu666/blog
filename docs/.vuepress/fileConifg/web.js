@@ -11,6 +11,7 @@ const web = [
   "js/",
   "http/",
   "writeJs/",
+  "output/",
   "regExp/",
   {
     title: "Typescript",
