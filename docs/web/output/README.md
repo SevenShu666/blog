@@ -1274,3 +1274,475 @@ console.log(baz.a);
 ~~~
 
 > this绑定的优先级：new绑定 > 显式绑定 > 隐式绑定 > 默认绑定。
+
+## 三、作用域&变量提升&闭包
+
+### 1.代码输出
+
+~~~js
+(function(){
+   var x = y = 1;
+})();
+var z;
+
+console.log(y);
+console.log(z);
+console.log(x);
+~~~
+
+输出：
+
+~~~
+1
+undefined
+x is not defined
+~~~
+
+`var x = y = 1`代码从右向左执行，y = 1没有使用var声明所以是个全局变量，y赋值给x，x是函数内的局部变量，在函数外部获取不到
+
+### 2.代码输出
+
+~~~js
+var a, b
+(function () {
+   console.log(a);
+   console.log(b);
+   var a = (b = 3);
+   console.log(a);
+   console.log(b);   
+})()
+console.log(a);
+console.log(b);
+~~~
+
+输出：
+
+~~~
+undefined
+undefined
+3
+3
+undefined
+3
+~~~
+
+### 3.代码输出
+
+~~~js
+var friendName = 'World';
+(function() {
+  if (typeof friendName === 'undefined') {
+    var friendName = 'Jack';
+    console.log('Goodbye ' + friendName);
+  } else {
+    console.log('Hello ' + friendName);
+  }
+})();
+~~~
+
+输出：
+
+~~~
+Goodbye Jack
+~~~
+
+在 JavaScript中， Function 和 var 都会被提升（变量提升）
+
+如同：
+
+~~~js
+var name = 'World!';
+(function () {
+    var name;
+    if (typeof name === 'undefined') {
+        name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})();
+~~~
+
+### 4.代码输出
+
+~~~js
+function fn1(){
+  console.log('fn1')
+}
+var fn2
+ 
+fn1()
+fn2()
+ 
+fn2 = function() {
+  console.log('fn2')
+}
+ 
+fn2()
+~~~
+
+输出：
+
+~~~
+fn1
+Uncaught TypeError: fn2 is not a function
+fn2
+~~~
+
+### 5.代码输出
+
+~~~
+// 不会执行
+function a() {
+    var temp = 10;
+    function b() {
+        console.log(temp);
+    }
+    b();
+}
+a();
+
+function a() {
+    var temp = 10;
+    b();
+}
+function b() {
+    console.log(temp);
+}
+a();
+~~~
+
+输出：
+
+~~~
+temp is not defined
+~~~
+
+函数会提升，所以第一个`a()`执行的是第二次定义的a函数，直接导致报错
+
+### 6.代码输出
+
+~~~
+var a = 3;
+function c() {
+  console.log(a);
+}
+(function () {
+  var a = 4;
+  c();
+})();
+~~~
+
+输出：
+
+~~~
+3
+~~~
+
+作用域链与定义时的环境相关
+
+### 7.代码输出
+
+~~~js
+function fun(n, o) {
+  console.log(o)
+  return {
+    fun: function(m){
+      return fun(m, n);
+    }
+  };
+}
+var a = fun(0);  a.fun(1);  a.fun(2);  a.fun(3);
+var b = fun(0).fun(1).fun(2).fun(3);
+var c = fun(0).fun(1);  c.fun(2);  c.fun(3);
+~~~
+
+输出：
+
+~~~js
+undefined  0  0  0
+undefined  0  1  2
+undefined  0  1  1
+~~~
+
+## 四、原型&继承
+
+### 1.代码输出
+
+~~~js
+function Person(name) {
+    this.name = name
+}
+var p2 = new Person('king');
+~~~
+
+输出：
+
+~~~js
+console.log(p2.__proto__) //Person.prototype
+console.log(p2.__proto__.__proto__) //Object.prototype
+console.log(p2.__proto__.__proto__.__proto__) // null
+console.log(p2.__proto__.__proto__.__proto__.__proto__)//null后面没有了，报错
+console.log(p2.__proto__.__proto__.__proto__.__proto__.__proto__)//null后面没有了，报错
+console.log(p2.constructor)//Person
+console.log(p2.prototype)//undefined p2是实例，没有prototype属性
+console.log(Person.constructor)//Function 一个空函数
+console.log(Person.prototype)//打印出Person.prototype这个对象里所有的方法和属性
+console.log(Person.prototype.constructor)//Person
+console.log(Person.prototype.__proto__)// Object.prototype
+console.log(Person.__proto__) //Function.prototype
+console.log(Function.prototype.__proto__)//Object.prototype
+console.log(Function.__proto__)//Function.prototype
+console.log(Object.__proto__)//Function.prototype
+console.log(Object.prototype.__proto__)//null
+~~~
+
+### 2.代码输出
+
+~~~js
+function Foo() {
+  getName = function () {
+    console.log(1);
+  };
+  return this;
+}
+
+Foo.getName = function () {
+  console.log(2);
+};
+
+Foo.prototype.getName = function () {
+  console.log(3);
+};
+
+var getName = function () {
+  console.log(4);
+};
+
+function getName() {
+  console.log(5);
+}
+
+Foo.getName();
+getName();
+Foo().getName();
+getName();
+new Foo.getName();
+new Foo().getName();
+new new Foo().getName();
+~~~
+
+输出：
+
+~~~
+2
+4
+1
+1
+2
+3
+3
+~~~
+
+`new Foo.getName()`等价于`new (Foo.getName())`
+
+`new Foo().getName()`等价于`(new Foo()).getName()`
+
+`new new Foo().getName()`等价于`new (new Foo().getName())`
+
+### 3.代码输出
+
+~~~js
+var F = function() {};
+Object.prototype.a = function() {
+  console.log('a');
+};
+Function.prototype.b = function() {
+  console.log('b');
+}
+var f = new F();
+f.a();
+f.b();
+F.a();
+F.b()
+~~~
+
+输出：
+
+~~~
+a
+f.b is not a function
+a
+b
+~~~
+
+### 4.代码输出
+
+~~~js
+function Foo(){
+    Foo.a = function(){
+        console.log(1);
+    }
+    this.a = function(){
+        console.log(2)
+    }
+}
+
+Foo.prototype.a = function(){
+    console.log(3);
+}
+
+Foo.a = function(){
+    console.log(4);
+}
+
+Foo.a();
+let obj = new Foo();
+obj.a();
+Foo.a();
+~~~
+
+输出：
+
+~~~
+4
+2
+1
+~~~
+
+### 5.代码输出
+
+~~~js
+var A = {n: 4399};
+var B =  function(){this.n = 9999};
+var C =  function(){var n = 8888};
+B.prototype = A;
+C.prototype = A;
+var b = new B();
+var c = new C();
+A.n++
+console.log(b.n);
+console.log(c.n);
+~~~
+
+输出：
+
+~~~
+9999
+4400
+~~~
+
+### 6.代码输出
+
+~~~js
+function A(){
+}
+function B(a){
+　　this.a = a;
+}
+function C(a){
+　　if(a){
+this.a = a;
+　　}
+}
+A.prototype.a = 1;
+B.prototype.a = 1;
+C.prototype.a = 1;
+ 
+console.log(new A().a);
+console.log(new B().a);
+console.log(new C(2).a);
+~~~
+
+输出：
+
+~~~
+1
+undefined
+2
+~~~
+
+### 7.代码输出
+
+~~~js
+function Parent() {
+    this.a = 1;
+    this.b = [1, 2, this.a];
+    this.c = { demo: 5 };
+    this.show = function () {
+        console.log(this.a , this.b , this.c.demo );
+    }
+}
+
+function Child() {
+    this.a = 2;
+    this.change = function () {
+        this.b.push(this.a);
+        this.a = this.b.length;
+        this.c.demo = this.a++;
+    }
+}
+
+Child.prototype = new Parent();
+var parent = new Parent();
+var child1 = new Child();
+var child2 = new Child();
+child1.a = 11;
+child2.a = 12;
+parent.show();
+child1.show();
+child2.show();
+child1.change();
+child2.change();
+parent.show();
+child1.show();
+child2.show();
+~~~
+
+输出：
+
+~~~js
+parent.show(); // 1  [1,2,1] 5
+
+child1.show(); // 11 [1,2,1] 5
+child2.show(); // 12 [1,2,1] 5
+
+parent.show(); // 1 [1,2,1] 5
+
+child1.show(); // 5 [1,2,1,11,12] 5
+
+child2.show(); // 6 [1,2,1,11,12] 5
+~~~
+
+### 8.代码输出
+
+~~~js
+function SuperType(){
+    this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function(){
+    return this.property;
+};
+
+function SubType(){
+    this.subproperty = false;
+}
+
+SubType.prototype = new SuperType();
+SubType.prototype.getSubValue = function (){
+    return this.subproperty;
+};
+
+var instance = new SubType();
+console.log(instance.getSuperValue());
+~~~
+
+输出：
+
+~~~
+true
+~~~
+
+
+
