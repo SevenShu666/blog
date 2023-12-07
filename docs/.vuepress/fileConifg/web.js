@@ -13,6 +13,7 @@ const web = [
   "writeJs/",
   "output/",
   "regExp/",
+  "vue3.0/",
   {
     title: "Typescript",
     children: tsChildren,
