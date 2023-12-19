@@ -14,6 +14,7 @@ const web = [
   "output/",
   "regExp/",
   "vue3.0/",
+  "vite/",
   {
     title: "Typescript",
     children: tsChildren,
