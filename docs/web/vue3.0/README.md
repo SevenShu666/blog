@@ -2,7 +2,7 @@
 
 [vue官方中文文档](https://cn.vuejs.org/)
 
-## 一.composition API
+## 一、composition API
 
 ### 1.setup
 
@@ -221,7 +221,7 @@ watch()接收的第一个参数被称作"数据源",它可以是：
 
 ### 4.生命周期
 
-![组件生命周期图示](https://cn.vuejs.org/assets/lifecycle.16e4c08e.png)
+![组件生命周期图示](https://cn.vuejs.org/assets/lifecycle.DLmSwRQE.png)
 
 ~~~vue
 <script setup lang="ts">
@@ -368,7 +368,10 @@ onMounted(() => {
 
 - pinia
 
-### 8.Teleport
+
+## 二、重大改变
+
+### 1.Teleport
 
 它可以将一个组件内部的一部分模板“传送”到该组件的 DOM 结构外层的位置去。
 
@@ -385,7 +388,7 @@ onMounted(() => {
 </Teleport>
 ~~~
 
-### 9.Supense
+### 2.Supense
 
 > 是一项实验性功能。它不一定会最终成为稳定功能，并且在稳定之前相关 API 也可能会发生变化。
 
@@ -403,7 +406,7 @@ onMounted(() => {
 </Suspense>
 ~~~
 
-### 10.Transition
+### 3.Transition
 
 - v-enter->v-enter-from
 - v-leave->v-leave-from
@@ -415,7 +418,7 @@ onMounted(() => {
 </Transition>
 ~~~
 
-~~~vue
+~~~css
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
@@ -427,7 +430,7 @@ onMounted(() => {
 }
 ~~~
 
-### 11.Slot
+### 4.Slot
 
 具名插槽`slot`和作用域插槽`slot-scope`合并为`v-slot`
 
@@ -443,7 +446,9 @@ onMounted(() => {
 </template>
 ~~~
 
-### 12.v-model
+### 5.v-model
+
+#### 2.0
 
 在2.0`v-model`必须使用`value`的prop，并且只能使用一个`v-model`，对于数据传递只能使用自定义属性和事件
 
@@ -458,7 +463,30 @@ onMounted(() => {
 />
 ~~~
 
-### 13.自定义指令
+使用`v-bind.sync`
+
+~~~vue
+<ChildComponent :title.sync="pageTitle" />
+
+this.$emit('update:title', newValue)
+~~~
+
+#### 3.0
+
+在 3.x 中，自定义组件上的 `v-model` 相当于传递了 `modelValue` prop 并接收抛出的 `update:modelValue` 事件
+
+~~~vue
+<ChildComponent v-model="pageTitle" />
+
+<!-- 简写: -->
+
+<ChildComponent
+  :modelValue="pageTitle"
+  @update:modelValue="pageTitle = $event"
+/>
+~~~
+
+### 6.自定义指令
 
 API 已重命名，以便更好地与组件生命周期保持一致
 
