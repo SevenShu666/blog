@@ -587,11 +587,11 @@ console.log(`内存占有率${mem}%`);
 `process` 是Nodejs操作当前进程和控制当前进程的API，并且是挂载到globalThis下面的全局API
 
 1. process.arch
-  返回操作系统 CPU 架构 跟我们之前讲的os.arch 一样
-  'arm'、'arm64'、'ia32'、'mips'、'mipsel'、'ppc'、'ppc64'、's390'、's390x'、以及 'x64'
+    返回操作系统 CPU 架构 跟我们之前讲的os.arch 一样
+    'arm'、'arm64'、'ia32'、'mips'、'mipsel'、'ppc'、'ppc64'、's390'、's390x'、以及 'x64'
 
 2. process.cwd()
-  返回当前的工作目录 例如在 F:\project\node> 执行的脚本就返回这个目录 也可以和path拼接代替__dirname使用
+    返回当前的工作目录 例如在 F:\project\node> 执行的脚本就返回这个目录 也可以和path拼接代替__dirname使用
 
 3. process.argv
 
@@ -750,7 +750,88 @@ process.on('message',(data)=>{
 process.send('我是子进程')
 ~~~
 
-### http
+### 6.zlib
+
+`zlib` 模块提供了对数据压缩和解压缩的功能，以便在应用程序中减少数据的传输大小和提高性能。该模块支持多种压缩算法，包括 Deflate、Gzip 和 Raw Deflate。
+
+#### 1.gzip
+
+压缩
+
+~~~js
+// 引入所需的模块
+const zlib = require('zlib'); // zlib 模块提供数据压缩和解压缩功能
+const fs = require('fs'); // 引入fs 模块用于文件操作
+
+// 创建可读流和可写流
+const readStream = fs.createReadStream('index.txt'); // 创建可读流，读取名为 index.txt 的文件
+const writeStream = fs.createWriteStream('index.txt.gz'); // 创建可写流，将压缩后的数据写入 index.txt.gz 文件
+
+// 使用管道将可读流中的数据通过 Gzip 压缩，再通过管道传输到可写流中进行写入
+readStream.pipe(zlib.createGzip()).pipe(writeStream)
+~~~
+
+解压
+
+~~~js
+const readStream = fs.createReadStream('index.txt.gz')
+const writeStream = fs.createWriteStream('index2.txt')
+readStream.pipe(zlib.createGunzip()).pipe(writeStream)
+~~~
+
+#### 2.deflate
+
+压缩，无损压缩使用 createDeflate方法
+
+~~~js
+const readStream = fs.createReadStream('index.txt'); // 创建可读流，读取名为 index.txt 的文件
+const writeStream = fs.createWriteStream('index.txt.deflate'); // 创建可写流，将压缩后的数据写入 index.txt.deflate 文件
+readStream.pipe(zlib.createDeflate()).pipe(writeStream);
+~~~
+
+解压
+
+~~~js
+const readStream = fs.createReadStream('index.txt.deflate')
+const writeStream = fs.createWriteStream('index3.txt')
+readStream.pipe(zlib.createInflate()).pipe(writeStream)
+~~~
+
+gzip 和 deflate 区别
+
+1. 压缩算法：Gzip 使用的是 Deflate 压缩算法，该算法结合了 LZ77 算法和哈夫曼编码。LZ77 算法用于数据的重复字符串的替换和引用，而哈夫曼编码用于进一步压缩数据。
+2. 压缩效率：Gzip 压缩通常具有更高的压缩率，因为它使用了哈夫曼编码来进一步压缩数据。哈夫曼编码根据字符的出现频率，将较常见的字符用较短的编码表示，从而减小数据的大小。
+3. 压缩速度：相比于仅使用 Deflate 的方式，Gzip 压缩需要更多的计算和处理时间，因为它还要进行哈夫曼编码的步骤。因此，在压缩速度方面，Deflate 可能比 Gzip 更快。
+4. 应用场景：Gzip 压缩常用于文件压缩、网络传输和 HTTP 响应的内容编码。它广泛应用于 Web 服务器和浏览器之间的数据传输，以减小文件大小和提高网络传输效率。
+
+#### 3.http请求压缩
+
+~~~js
+const zlib = require('zlib'); 
+const http = require('node:http'); 
+const server = http.createServer((req,res)=>{
+    const txt = 'xy'.repeat(1000);
+
+    // res.setHeader('Content-Encoding','gzip')
+    res.setHeader('Content-Encoding','deflate')
+    res.setHeader('Content-type','text/plan;charset=utf-8')
+   
+    // const result = zlib.gzipSync(txt);
+    const result = zlib.deflateSync(txt);
+    res.end(result)
+})
+
+server.listen(3000)
+~~~
+
+### 7.http
+
+“http” 模块是 Node.js 中用于创建和处理 HTTP 服务器和客户端的核心模块。它使得构建基于 HTTP 协议的应用程序变得更加简单和灵活。
+
+创建 Web 服务器：你可以使用 “http” 模块创建一个 HTTP 服务器，用于提供 Web 应用程序或网站。通过监听特定的端口，服务器可以接收客户端的请求，并生成响应。你可以处理不同的路由、请求方法和参数，实现自定义的业务逻辑。
+构建 RESTful API：“http” 模块使得构建 RESTful API 变得简单。你可以使用 HTTP 请求方法（如 GET、POST、PUT、DELETE 等）和路径来定义 API 的不同端点。通过解析请求参数、验证身份和权限，以及生成相应的 JSON 或其他数据格式，你可以构建强大的 API 服务。
+代理服务器：“http” 模块还可以用于创建代理服务器，用于转发客户端的请求到其他服务器。代理服务器可以用于负载均衡、缓存、安全过滤或跨域请求等场景。通过在代理服务器上添加逻辑，你可以对请求和响应进行修改、记录或过滤。
+文件服务器：“http” 模块可以用于创建一个简单的文件服务器，用于提供静态文件（如 HTML、CSS、JavaScript、图像等）。通过读取文件并将其作为响应发送给客户端，你可以轻松地构建一个基本的文件服务器。
 
 ```js
 const http = require("http");
@@ -758,10 +839,12 @@ http
   .createServer((req, res) => {
     res.end("响应完成了");
   })
-  .listen(3000);
+  .listen(3000,() => {
+    console.log('server is running on port 3000')
+});
 ```
 
-## events
+### 8.events
 
 发布订阅模式
 
@@ -863,9 +946,9 @@ event.emit('test', 'xyxyxyxyx1')
 event.emit('test', 'xyxyxyxyx2')
 ~~~
 
-## util
+### 9.util
 
-### util.promisify
+#### util.promisify
 
 将回调函数风格转为promise风格
 
@@ -884,7 +967,7 @@ execPromise("node -v")
   });
 ~~~
 
-### util.callbackify
+#### util.callbackify
 
 将promise风格转为回调函数风格
 
@@ -905,7 +988,7 @@ callback(1222, (err, val) => {
 });
 ~~~
 
-### util.format
+#### util.format
 
 - %s: String 将用于转换除 BigInt、Object 和 -0 之外的所有值。 BigInt 值将用 n 表示，没有用户定义的 toString 函数的对象使用具有选项 { depth: 0, colors: false, compact: 3 } 的 util.inspect() 进行检查。
 
@@ -923,11 +1006,11 @@ util.format('%s-----%s %s/%s','foo','bar','xy','zs')
 //foo-----bar xy/zs  可以返回指定的格式
 ~~~
 
-## crypto
+### 10.crypto
 
 密码学是计算机科学中的一个重要领域，它涉及到加密、解密、哈希函数和数字签名等技术。Node.js是一个流行的服务器端JavaScript运行环境，它提供了强大的密码学模块，使开发人员能够轻松地在其应用程序中实现各种密码学功能。
 
-### 1.对称加密
+#### 1.对称加密
 
 ~~~js
 const crypto = require('node:crypto');
@@ -953,7 +1036,7 @@ const decrypted = de.final("utf-8");
 console.log("Decrypted:", decrypted);
 ~~~
 
-### 2.非对称加密
+#### 2.非对称加密
 
 ~~~js
 const crypto = require('node:crypto')
@@ -976,7 +1059,7 @@ console.log(decrypted.toString());
 
 非对称加密使用一对密钥，分别是公钥和私钥。发送者使用接收者的公钥进行加密，而接收者使用自己的私钥进行解密。公钥可以自由分享给任何人，而私钥必须保密。非对称加密算法提供了更高的安全性，因为即使公钥泄露，只有持有私钥的接收者才能解密数据。然而，非对称加密算法的加密速度相对较慢，不适合加密大量数据。因此，在实际应用中，通常使用非对称加密来交换对称密钥，然后使用对称加密算法来加密实际的数据。
 
-### 3.哈希函数
+#### 3.哈希函数
 
 ~~~js
 const crypto = require('node:crypto');
@@ -1008,99 +1091,5 @@ console.log('Hash:', hashValue);
 
 1. 我们可以避免密码明文传输 使用md5加密或者sha256
 2. 验证文件完整性，读取文件内容生成md5 如果前端上传的md5和后端的读取文件内部的md5匹配说明文件是完整的
-
-## FFmpeg
-
-是一个开源的跨平台多媒体处理工具，可以用于处理音频、视频和多媒体流。它提供了一组强大的命令行工具和库，可以进行视频转码、视频剪辑、音频提取、音视频合并、流媒体传输等操作。
-
-FFmpeg 的主要功能和特性：
-
-1. 格式转换：FFmpeg 可以将一个媒体文件从一种格式转换为另一种格式，支持几乎所有常见的音频和视频格式，包括 MP4、AVI、MKV、MOV、FLV、MP3、AAC 等。
-2. 视频处理：FFmpeg 可以进行视频编码、解码、裁剪、旋转、缩放、调整帧率、添加水印等操作。你可以使用它来调整视频的分辨率、剪辑和拼接视频片段，以及对视频进行各种效果处理。
-3. 音频处理：FFmpeg 可以进行音频编码、解码、剪辑、混音、音量调节等操作。你可以用它来提取音频轨道、剪辑和拼接音频片段，以及对音频进行降噪、均衡器等处理。
-4. 流媒体传输：FFmpeg 支持将音视频流实时传输到网络上，可以用于实时流媒体服务、直播和视频会议等应用场景。
-5. 视频处理效率高：FFmpeg 是一个高效的工具，针对处理大型视频文件和高分辨率视频进行了优化，可以在保持良好质量的同时提供较快的处理速度。
-6. 跨平台支持：FFmpeg 可以在多个操作系统上运行，包括 Windows、MacOS、Linux 等，同时支持多种硬件加速技术，如 NVIDIA CUDA 和 Intel Quick Sync Video。
-
-### 安装
-
-[FFmpeg下载地址](https://ffmpeg.p2hp.com/download.html)
-
-配置环境变量，在path中添加路径，例：C:\Program Files\ffmpeg\bin
-
-输入 `ffmpage -version` 不报错即可
-
-### 子进程配合ffmpeg
-
-1. 简单的demo 视频转gif `-i` 表示输入的意思
-
-   ~~~js
-   const {execSync} = require('child_process')
-   execSync(`ffmpeg -i test.mp4 test.gif`,{stdio:'inherit'})
-   ~~~
-
-2. 添加水印
-
-   -vf 就是video filter
-
-   drawtext 添加文字 fontsize 大小 xy垂直水平方向 fontcolor 颜色 text 水印文案 `全部小写`
-
-   ~~~js
-   const {execSync} = require('child_process')
-   
-   execSync(`ffmpeg -i test.mp4 -vf drawtext=text="xyZS":fontsize=30:fontcolor=white:x=10:y=10 test2.mp4`,{stdio:'inherit'})
-   ~~~
-
-3. 视频裁剪 + 控制大小
-
-   -ss 起始时间
-
-   -to 结束事件
-
-   > ss写在 -i的前面可能会导致精度问题，因为视频还没解析就跳转到了相关位置，但是解析速度快
-   >
-   > ss写在 -i后面精度没问题，但是解析速度会变慢
-
-   ~~~js
-   const {execSync} = require('child_process')
-   
-   execSync(`ffmpeg -ss 10 -to 20 -i test.mp4  test3.mp4`,{stdio:'inherit'})
-   ~~~
-
-4. 提取视频的音频
-
-   ~~~js
-   const {execSync} = require('child_process')
-   execSync(`ffmpeg -i test.mp4 test.mp3`,{stdio:'inherit'})
-   ~~~
-
-5. 去掉水印
-
-   w h 宽高
-   xy 垂直 水平坐标
-   delogo使用的过滤参数删除水印
-
-   ~~~js
-   const {execSync} = require('child_process')
-   
-   execSync(`ffmpeg -i  test2.mp4 -vf delogo=w=120:h=30:x=10:y=10 test3.mp4`,{stdio:'inherit'})
-   ~~~
-
-## pngquant
-
-是一个用于压缩 PNG 图像文件的工具。它可以显著减小 PNG 文件的大小，同时保持图像质量和透明度。通过减小文件大小，可以提高网页加载速度，并节省存储空间。`pngquant` 提供命令行接口和库，可轻松集成到各种应用程序和脚本中。
-
-[pngquant下载地址](http://pngquant.com/)
-
-### 使用
-
-~~~js
-const { exec } = require("node:child_process");
-exec('pngquant 73kb.png --speed=1 --quality=82 --output test.png')
-~~~
-
-- `--quality`: 表示图片质量0-100值越大图片越大效果越好
-- `--speed=1`: 最慢的速度，产生最高质量的输出图像。
-- `--speed=10`: 最快的速度，但可能导致输出图像质量稍微降低。
 
 <Valine></Valine>
