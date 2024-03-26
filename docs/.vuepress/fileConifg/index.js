@@ -4,6 +4,7 @@ const node = require("./node");
 const miscellany = require("./miscellany");
 const workingDiary = require("./workingDiary");
 const electron = require("./electron");
+const tools = require("./tools");
 
 module.exports = {
   arithmetic,
@@ -12,4 +13,5 @@ module.exports = {
   miscellany,
   workingDiary,
   electron,
+  tools,
 };

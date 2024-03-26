@@ -5,6 +5,7 @@ const {
   miscellany,
   workingDiary,
   electron,
+  tools,
 } = require("./fileConifg/index.js");
 
 const config = {
@@ -18,92 +19,8 @@ const config = {
       { text: "前端", link: "/web/html/" },
       { text: "node", link: "/node/" },
       { text: "算法", link: "/arithmetic/" },
-      {
-        text: "工具",
-        items: [
-          {
-            text: "vue",
-            link: "https://cn.vuejs.org/",
-            target: "_blank",
-          },
-          {
-            text: "vue-router",
-            link: "https://router.vuejs.org/zh/",
-            target: "_blank",
-          },
-          {
-            text: "pinia",
-            link: "https://pinia.vuejs.org/zh/",
-            target: "_blank",
-          },
-          {
-            text: "react",
-            link: "https://react.docschina.org/",
-            target: "_blank",
-          },
-          {
-            text: "vite",
-            link: "https://vitejs.cn/",
-            target: "_blank",
-          },
-          {
-            text: "webpack",
-            link: "https://webpack.js.org/",
-            target: "_blank",
-          },
-          {
-            text: "typescript",
-            link: "https://www.typescriptlang.org/zh/",
-            target: "_blank",
-          },
-          {
-            text: "electron",
-            link: "https://www.electronjs.org/zh/docs/latest/",
-            target: "_blank",
-          },
-          {
-            text: "flutter",
-            link: "https://flutter.cn/multi-platform/mobile",
-            target: "_blank",
-          },
-          {
-            text: "reactnative",
-            link: "https://www.reactnative.cn/",
-            target: "_blank",
-          },
-          {
-            text: "nestjs",
-            link: "https://docs.nestjs.cn/9/firststeps",
-            target: "_blank",
-          },
-          {
-            text: "elementUI",
-            link: "https://element.faas.ele.me/#/zh-CN",
-            target: "_blank",
-          },
-          {
-            text: "antDesign",
-            link: "https://ant.design/index-cn",
-            target: "_blank",
-          },
-          {
-            text: "vant",
-            link: "https://vant-ui.github.io/vant/#/zh-CN/",
-            target: "_blank",
-          },
-          {
-            text: "momentjs",
-            link: "https://momentjs.cn/",
-            target: "_blank",
-          },
-          {
-            text: "即时设计",
-            link: "https://js.design/login?by=phone",
-            target: "_blank",
-          },
-        ],
-      },
       { text: "electron", link: "/electron/" },
+      { text: "工具", items: tools },
       { text: "杂项", link: "/miscellany/" },
       { text: "工作日记", link: "/workingDiary/" },
     ],
