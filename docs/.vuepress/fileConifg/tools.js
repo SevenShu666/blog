@@ -68,6 +68,11 @@ module.exports = [
         target: "_blank",
       },
       {
+        text: "electron-vite",
+        link: "https://cn.electron-vite.org/",
+        target: "_blank",
+      },
+      {
         text: "flutter",
         link: "https://flutter.cn/multi-platform/mobile",
         target: "_blank",

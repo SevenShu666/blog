@@ -151,9 +151,6 @@ for (let i = 1; i <= 4; i++) {
 
 ```js
 function dateFormat(date, format) {
-  if (/^\d{13}$/.test(date)) {
-    date = new Date(date);
-  }
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
