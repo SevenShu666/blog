@@ -342,7 +342,7 @@ console.log(
 
 ```js
 const arr = [1, 2, 3, 4, 5, 6];
-
+// map方法第二个参数可以选择this
 Array.prototype.myMap = function (fn, thisValue) {
   if (typeof fn !== "function") {
     throw new TypeError(fn + " not a function");
@@ -556,12 +556,23 @@ function getJSON(url) {
 
 ```js
 class EventEmitter {
+  cache;
   constructor() {
     this.cache = {};
   }
+  only(name, fn) {
+    // 注册全局唯一事件
+    if (this.cache[name]) return;
+    this.cache[name] = [fn];
+  }
   on(name, fn) {
     if (this.cache[name]) {
-      this.cache[name].push(fn);
+      const tasks = this.cache[name];
+      const index = tasks.findIndex((f) => f === fn || f.callback === fn);
+      // 防止同一事件多次注册
+      if (index < 0) {
+        this.cache[name].push(fn);
+      }
     } else {
       this.cache[name] = [fn];
     }
@@ -579,7 +590,7 @@ class EventEmitter {
     if (this.cache[name]) {
       // 创建副本，如果函数内继续注册相同事件，会造成死循环
       const tasks = this.cache[name].slice();
-      for (let fn of tasks) {
+      for (const fn of tasks) {
         fn(...args);
       }
     }

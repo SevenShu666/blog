@@ -73,6 +73,11 @@ module.exports = [
         target: "_blank",
       },
       {
+        text: "electron-builder",
+        link: "https://www.electron.build/configuration/configuration",
+        target: "_blank",
+      },
+      {
         text: "flutter",
         link: "https://flutter.cn/multi-platform/mobile",
         target: "_blank",
@@ -115,19 +120,34 @@ module.exports = [
     ],
   },
   {
-    text: "杂项",
+    text: "其他",
     items: [
+      {
+        text: "github",
+        link: "https://github.com/",
+        target: "_blank",
+      },
+      {
+        text: "leetcode",
+        link: "https://leetcode.cn/problemset/",
+        target: "_blank",
+      },
       {
         text: "typescript",
         link: "https://www.typescriptlang.org/zh/",
         target: "_blank",
       },
-
       {
         text: "momentjs",
         link: "https://momentjs.cn/",
         target: "_blank",
       },
+      {
+        text: "axios文档",
+        link: "https://axios-http.com/docs/intro",
+        target: "_blank",
+      },
+
     ],
   },
 ];
