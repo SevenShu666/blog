@@ -150,13 +150,14 @@ for (let i = 1; i <= 4; i++) {
 ## 五、日期格式化
 
 ```js
-function dateFormat(date, format) {
+function dateFormat(date, format = "YYYY/MM/DD") {
+  date = new Date(date);
+
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
 
-  format = format.replace("yyyy", year).replace("mm", month).replace("dd", day);
-  return format;
+  return format.replace("YYYY", year).replace("MM", month).replace("DD", day);
 }
 
 console.log(dateFormat(new Date("2020-12-01"), "yyyy/mm/dd"));
@@ -269,8 +270,6 @@ console.log(sumBigNumber("19007199254740992", "9007199254740993"));
 ## 八、类数组转换成数组
 
 ```js
-let arrayLike = new Set([1, 2, 3, 4]);
-
 // 调用数组的slice方法
 arrayLike = Array.prototype.slice.call(arrayLike, 0);
 
@@ -282,6 +281,9 @@ arrayLike = Array.prototype.concat.apply([], arrayLike);
 
 // 调用Array.from方法
 arrayLike = Array.from(arrayLike);
+
+// 扩展运算符
+arrayLike = Array.from([...arrayLike]);
 ```
 
 ## 九、数组的乱序输出
