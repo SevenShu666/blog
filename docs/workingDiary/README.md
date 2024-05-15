@@ -309,4 +309,102 @@ Error: Too many retries.
 
 将ACCESS_TOKEN的workflow选项选上
 
+### 6. C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\Bin\makensis.exe process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+
+```
+⨯ C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\Bin\makensis.exe process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+Exit code:
+1
+Output:
+Command line defined: "APP_ID=com.electron.app"
+Command line defined: "APP_GUID=f8941786-352c-5c22-bea5-7886c3ac4a8f"
+Command line defined: "UNINSTALL_APP_KEY=f8941786-352c-5c22-bea5-7886c3ac4a8f"
+Command line defined: "PRODUCT_NAME=starrysky-music"
+Command line defined: "PRODUCT_FILENAME=starrysky-music"
+Command line defined: "APP_FILENAME=starrysky-music"
+Command line defined: "APP_DESCRIPTION=??????"
+Command line defined: "VERSION=1.0.0"
+Command line defined: "PROJECT_DIR=D:\a\starrysky-music-desktop\starrysky-music-desktop"
+Command line defined: "BUILD_RESOURCES_DIR=D:\a\starrysky-music-desktop\starrysky-music-desktop\build"
+Command line defined: "APP_PACKAGE_NAME=starrysky-music-desktop"
+Command line defined: "MUI_ICON=D:\a\starrysky-music-desktop\starrysky-music-desktop\resources\icon.ico"
+Command line defined: "MUI_UNICON=D:\a\starrysky-music-desktop\starrysky-music-desktop\resources\icon.ico"
+Command line defined: "APP_64=D:\a\starrysky-music-desktop\starrysky-music-desktop\dist\starrysky-music-desktop-1.0.0-x64.nsis.7z"
+Command line defined: "APP_64_NAME=starrysky-music-desktop-1.0.0-x64.nsis.7z"
+Command line defined: "APP_64_HASH=669243A0ED8C749B8E003F23EF44136096E315E9037BAF26A2ADEDDAC7E62F95A05AE04AA229650CC603FC614C1E792C036A54C4968A8DB40802336D6132B8B2"
+Command line defined: "APP_64_UNPACKED_SIZE=343317"
+Command line defined: "COMPANY_NAME=seven"
+Command line defined: "APP_INSTALLER_STORE_FILE=starrysky-music-desktop-updater\installer.exe"
+Command line defined: "COMPRESSION_METHOD=7z"
+Command line defined: "MULTIUSER_INSTALLMODE_ALLOW_ELEVATION"
+Command line defined: "INSTALL_MODE_PER_ALL_USERS_REQUIRED"
+Command line defined: "allowToChangeInstallationDirectory"
+Command line defined: "SHORTCUT_NAME=starrysky-music"
+Command line defined: "UNINSTALL_DISPLAY_NAME=starrysky-music"
+Command line defined: "RECREATE_DESKTOP_SHORTCUT"
+Command line defined: "MUI_WELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp"
+Command line defined: "MUI_UNWELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp"
+Command line defined: "ESTIMATED_SIZE=343317"
+Command line defined: "COMPRESS=auto"
+Command line defined: "BUILD_UNINSTALLER"
+Command line defined: "UNINSTALLER_OUT_FILE=D:\a\starrysky-music-desktop\starrysky-music-desktop\dist\__uninstaller-nsis-starrysky-music-desktop.exe"
+Processing config: C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\nsisconf.nsh
+Processing script file: "<stdin>" (UTF8)
+
+Error output:
+!include: could not open file: "D:\a\starrysky-music-desktop\starrysky-music-desktop\node_modules\.pnpm\app-builder-lib@24.13.3_dmg-builder@24.13.3_electron-builder-squirrel-windows@24.13.3_dmg-bui_lrspnoputfiosacwyigcypdbdi\node_modules\app-builder-lib\templates\nsis\include\allowOnlyOneInstallerInstance.nsh"
+Error in script "<stdin>" on line 88 -- aborting creation process
+  failedTask=build stackTrace=Error: C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\Bin\makensis.exe process failed ERR_ELECTRON_BUILDER_CANNOT_EXECUTE
+Exit code:
+1
+Output:
+Command line defined: "APP_ID=com.electron.app"
+Command line defined: "APP_GUID=f8941786-352c-5c22-bea5-7886c3ac4a8f"
+Command line defined: "UNINSTALL_APP_KEY=f8941786-352c-5c22-bea5-7886c3ac4a8f"
+Command line defined: "PRODUCT_NAME=starrysky-music"
+Command line defined: "PRODUCT_FILENAME=starrysky-music"
+Command line defined: "APP_FILENAME=starrysky-music"
+Command line defined: "APP_DESCRIPTION=??????"
+Command line defined: "VERSION=1.0.0"
+Command line defined: "PROJECT_DIR=D:\a\starrysky-music-desktop\starrysky-music-desktop"
+Command line defined: "BUILD_RESOURCES_DIR=D:\a\starrysky-music-desktop\starrysky-music-desktop\build"
+Command line defined: "APP_PACKAGE_NAME=starrysky-music-desktop"
+Command line defined: "MUI_ICON=D:\a\starrysky-music-desktop\starrysky-music-desktop\resources\icon.ico"
+Command line defined: "MUI_UNICON=D:\a\starrysky-music-desktop\starrysky-music-desktop\resources\icon.ico"
+Command line defined: "APP_64=D:\a\starrysky-music-desktop\starrysky-music-desktop\dist\starrysky-music-desktop-1.0.0-x64.nsis.7z"
+Command line defined: "APP_64_NAME=starrysky-music-desktop-1.0.0-x64.nsis.7z"
+Command line defined: "APP_64_HASH=669243A0ED8C749B8E003F23EF44136096E315E9037BAF26A2ADEDDAC7E62F95A05AE04AA229650CC603FC614C1E792C036A54C4968A8DB40802336D6132B8B2"
+Command line defined: "APP_64_UNPACKED_SIZE=343317"
+Command line defined: "COMPANY_NAME=seven"
+Command line defined: "APP_INSTALLER_STORE_FILE=starrysky-music-desktop-updater\installer.exe"
+Command line defined: "COMPRESSION_METHOD=7z"
+Command line defined: "MULTIUSER_INSTALLMODE_ALLOW_ELEVATION"
+Command line defined: "INSTALL_MODE_PER_ALL_USERS_REQUIRED"
+Command line defined: "allowToChangeInstallationDirectory"
+Command line defined: "SHORTCUT_NAME=starrysky-music"
+Command line defined: "UNINSTALL_DISPLAY_NAME=starrysky-music"
+Command line defined: "RECREATE_DESKTOP_SHORTCUT"
+Command line defined: "MUI_WELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp"
+Command line defined: "MUI_UNWELCOMEFINISHPAGE_BITMAP=${NSISDIR}\Contrib\Graphics\Wizard\nsis3-metro.bmp"
+Command line defined: "ESTIMATED_SIZE=343317"
+Command line defined: "COMPRESS=auto"
+Command line defined: "BUILD_UNINSTALLER"
+Command line defined: "UNINSTALLER_OUT_FILE=D:\a\starrysky-music-desktop\starrysky-music-desktop\dist\__uninstaller-nsis-starrysky-music-desktop.exe"
+Processing config: C:\Users\runneradmin\AppData\Local\electron-builder\Cache\nsis\nsis-3.0.4.1\nsisconf.nsh
+Processing script file: "<stdin>" (UTF8)
+                                                                        Error output:
+!include: could not open file: "D:\a\starrysky-music-desktop\starrysky-music-desktop\node_modules\.pnpm\app-builder-lib@24.13.3_dmg-builder@24.13.3_electron-builder-squirrel-windows@24.13.3_dmg-bui_lrspnoputfiosacwyigcypdbdi\node_modules\app-builder-lib\templates\nsis\include\allowOnlyOneInstallerInstance.nsh"
+Error in script "<stdin>" on line 88 -- aborting creation process
+                                                                        at ChildProcess.<anonymous> (D:\a\starrysky-music-desktop\starrysky-music-desktop\node_modules\.pnpm\builder-util@24.13.1\node_modules\builder-util\src\util.ts:252:14)
+    at Object.onceWrapper (node:events:632:26)
+    at ChildProcess.emit (node:events:517:28)
+    at ChildProcess.cp.emit (D:\a\starrysky-music-desktop\starrysky-music-desktop\node_modules\.pnpm\cross-spawn@7.0.3\node_modules\cross-spawn\lib\enoent.js:34:29)
+    at maybeClose (node:internal/child_process:1098:16)
+    at Process.ChildProcess._handle.onexit (node:internal/child_process:303:5)
+ ELIFECYCLE  Command failed with exit code 1.
+Error: Process completed with exit code 1.
+```
+
+升级 electron 30 后 electron-builder 需要降级到 24.9.1，这个冲突只影响 action, 本地构建没事，将electron-builder锁定24.9.1。
+
 <Valine></Valine>
