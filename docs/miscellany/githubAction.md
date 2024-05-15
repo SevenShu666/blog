@@ -376,7 +376,11 @@ jobs:
               GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 ~~~
 
-ACCESS_TOKEN，令牌配置请看[VuePress自动部署](/vuepress.html#github-actions-自动部署)，需要将workflow选项选上
+ACCESS_TOKEN，令牌配置请看[VuePress自动部署](https://starrysky-future.github.io/blog/miscellany/vuepress.html#github-actions-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2)，需要将workflow选项选上
+
+
+
+
 
 ## 七、运行Action
 
