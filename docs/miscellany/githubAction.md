@@ -376,7 +376,7 @@ jobs:
               GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 ~~~
 
-ACCESS_TOKEN，令牌配置请看[VuePress自动部署](miscellany/vuepress.html#github-actions-自动部署)，需要将workflow选项选上
+ACCESS_TOKEN，令牌配置请看[VuePress自动部署](/vuepress.html#github-actions-自动部署)，需要将workflow选项选上
 
 ## 七、运行Action
 

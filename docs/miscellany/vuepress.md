@@ -403,11 +403,11 @@ cd -
 
 #### 1.ACCESS_TOKEN 的创建
 
-点击头像—>settings—>Developer settings—>Personal access tokens，创建的时候名称是 ACCESS_TOKEN
+点击头像—>settings—>Developer settings—>Personal access tokens，创建的时候名称是 ACCESS_TOKEN，将repo选项选上
 
 #### 2.将ACCESS_TOKEN配置到仓库
 
-对应代码仓—>setting—>secrets and variables—>actions—>Repository secrets，给个名称 ACCESS_TOKEN，将repo选项选上
+对应代码仓—>setting—>secrets and variables—>actions—>Repository secrets，给个名称 ACCESS_TOKEN，将ACCESS_TOKEN复制进去
 
 #### 3.创建 action
 
