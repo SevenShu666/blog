@@ -283,7 +283,7 @@ arrayLike = Array.prototype.concat.apply([], arrayLike);
 arrayLike = Array.from(arrayLike);
 
 // 扩展运算符
-arrayLike = Array.from([...arrayLike]);
+arrayLike = [...arrayLike];
 ```
 
 ## 九、数组的乱序输出
@@ -317,8 +317,8 @@ console.log(arr);
 
 ```js
 const arr = [1, 2, 3, 4, 5, 6];
-
-Array.prototype.myFilter = function (fn) {
+// 第二个参数可以选择fn执行的this，不传默认为undefined
+Array.prototype.myFilter = function (fn,thisValue) {
   if (typeof fn !== "function") {
     throw new TypeError(fn + " not a function");
   }
@@ -327,7 +327,7 @@ Array.prototype.myFilter = function (fn) {
   const result = [];
 
   for (let i = 0; i < len; i++) {
-    fn(this[i]) && result.push(this[i]);
+    fn.call(thisValue,this[i],i,this) && result.push(this[i]);
   }
 
   return result;
@@ -344,7 +344,7 @@ console.log(
 
 ```js
 const arr = [1, 2, 3, 4, 5, 6];
-// map方法第二个参数可以选择this
+// 第二个参数可以选择fn执行的this，不传默认为undefined
 Array.prototype.myMap = function (fn, thisValue) {
   if (typeof fn !== "function") {
     throw new TypeError(fn + " not a function");
@@ -661,8 +661,6 @@ console.log(format(111222333));
 ## 二十二、数组扁平化方法
 
 ```js
-const arr = [1, [2, 3], 4, [5, [6, 7]]];
-
 // 递归实现
 function flatten1(arr, result = []) {
   for (let i = 0; i < arr.length; i++) {
@@ -706,7 +704,7 @@ function flatten4(arr) {
 function flatten5(arr) {
   return arr.flat(Infinity);
 }
-
+const arr = [1, [2, 3], 4, [5, [6, 7]]];
 console.log(flatten5(arr));
 ```
 
@@ -869,10 +867,18 @@ const step3 = async () => {
 ## 二十七、a、b 值的交换不用临时变量
 
 ```js
-function exchange(a, b) {
+function exchange1(a, b) {
   a = a + b;
   b = a - b;
   a = a - b;
+
+  return [a, b];
+}
+
+function exchange2(a, b) {
+  a = a ^ b;
+  b = a ^ b;
+  a = a ^ b;
 
   return [a, b];
 }
@@ -1220,17 +1226,62 @@ class MyPromise {
   static all(list) {
     return new MyPromise((resolve, reject) => {
       let count = 0;
-      const valus = [];
+      const values = [];
       list.forEach((p, i) => {
         this.resolve(p).then(
           (res) => {
             valus[i] = res;
             count++;
 
-            if (count === list.length) resolve(valus);
+            if (count === list.length) resolve(values);
           },
           (err) => {
             reject(err);
+          }
+        );
+      });
+    });
+  }
+  static any(list) {
+    return new MyPromise((resolve, reject) => {
+      let count = 0;
+      const errors = [];
+      list.forEach((p, i) => {
+        this.resolve(p).then(
+          (val) => {
+            resolve(val);
+          },
+          (err) => {
+            errors[i] = err;
+            count++;
+            if (count === list.length) reject(errors);
+          }
+        );
+      });
+    });
+  }
+  static allSettled(list) {
+    return new MyPromise((resolve, reject) => {
+      let count = 0;
+      const res = [];
+
+      list.forEach((p, i) => {
+        this.resolve(p).then(
+          (val) => {
+            res[i] = {
+              status: "fulfilled",
+              value: val,
+            };
+            count++;
+            if (count === list.length) resolve(res);
+          },
+          (err) => {
+            res[i] = {
+              status: "rejected",
+              value: err,
+            };
+            count++;
+            if (count === list.length) resolve(reject);
           }
         );
       });
@@ -1252,9 +1303,10 @@ class MyPromise {
   }
   finally(cb) {
     return this.then(
+      // then后的返回值传递给finally后的then
       (res) => MyPromise.resolve(cb()).then(() => res),
       (reason) => {
-        MyPromise.resolve(cb()).then(() => {
+        return MyPromise.resolve(cb()).then(() => {
           throw reason;
         });
       }
@@ -1287,103 +1339,10 @@ p3.then(
 });
 ```
 
-## 三十五、Promsie.allSettled
+## 三十五、setTimeout 模拟 setInterval
 
 ```js
-Promise.allSettled = function (promiseArray) {
-  return new Promise((resolve, reject) => {
-    const result = [];
-    let count = 0;
-
-    promiseArray.forEach((p, i) => {
-      this.resolve(p).then(
-        (val) => {
-          count++;
-          result[i] = {
-            status: "fulfilled",
-            value: val,
-          };
-
-          if (count === promiseArray.length) resolve(result);
-        },
-        (err) => {
-          count++;
-          result[i] = {
-            status: "rejected",
-            value: err,
-          };
-
-          if (count === promiseArray.length) reject(result);
-        }
-      );
-    });
-  });
-};
-
-const p1 = Promise.resolve("p1");
-const p2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("p2 延时一秒");
-  }, 1000);
-});
-const p3 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("p3 延时两秒");
-  }, 2000);
-});
-
-const p4 = Promise.reject("p4 rejected");
-
-const p5 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject("p5 rejected 延时1.5秒");
-  }, 1500);
-});
-
-Promise.allSettled([p1, p2, p3])
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
-
-Promise.allSettled([p1, p2, p4])
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
-
-Promise.allSettled([p4, p5])
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
-```
-
-## 三十六、Promise.any
-
-```js
-Promise.any = function (promiseArray) {
-  return new Promise((resolve, reject) => {
-    promiseArray = Array.isArray(promiseArray) ? promiseArray : [];
-    const len = promiseArray.length;
-    if (len === 0) reject(new AggregateError("All promise were rejected"));
-    const errors = [];
-    let count = 0;
-    promiseArray.forEach((p, i) => {
-      this.resolve(p).then(
-        (val) => {
-          resolve(val);
-        },
-        (err) => {
-          count++;
-          errors[i] = err;
-          if (count === len)
-            reject(errors, new AggregateError("All promise were rejected"));
-        }
-      );
-    });
-  });
-};
-```
-
-## 三十七、setTimeout 模拟 setInterval
-
-```js
-function mySetInterval(fn, delay) {
+function mySetInterval1(fn, delay) {
   const timer = {
     flag: true,
   };
@@ -1400,10 +1359,28 @@ function mySetInterval(fn, delay) {
   return timer;
 }
 
+function mySetInterval2(fn, delay) {
+  let flag = true;
+
+  function interval() {
+    if (flag) {
+      fn();
+      setTimeout(interval, delay);
+    }
+  }
+  function stop() {
+    flag = false;
+  }
+
+  setTimeout(interval, delay);
+
+  return stop;
+}
+
 mySetInterval(() => console.log("1111"), 1000);
 ```
 
-## 三十八、splice 方法
+## 三十六、splice 方法
 
 ```js
 /**
@@ -1518,7 +1495,7 @@ Array.prototype.splice = function (startIndex, deleteCount, ...addElements) {
 };
 ```
 
-## 三十九、typeof 方法
+## 三十七、typeof 方法
 
 ```js
 function myTypeof(value) {
@@ -1532,7 +1509,7 @@ function myTypeof(value) {
 console.log(myTypeof(123));
 ```
 
-## 四十、Object.assign()方法
+## 三十八、Object.assign()方法
 
 ```js
 Object.prototype.myAssign = function (target, ...source) {
@@ -1557,7 +1534,7 @@ let obj1 = Object.myAssign({ a: 1 }, { b: 2 }, { c: 3 });
 console.log(obj1);
 ```
 
-## 四十一、Object.create 方法
+## 三十九、Object.create 方法
 
 ```js
 Object.prototype.myCreate = function (proto, propertyObject = undefined) {
@@ -1588,7 +1565,7 @@ const obj = Object.myCreate({});
 console.log(obj);
 ```
 
-## 四十二、reduce
+## 四十、reduce
 
 ```js
 Array.prototype.myReduce = function (cb, initialValue) {
@@ -1607,7 +1584,7 @@ let arr = [1, 2, 3];
 console.log(arr.myReduce((a, b) => a + b));
 ```
 
-## 四十三、trim 方法
+## 四十一、trim 方法
 
 ```js
 function trim(str) {
@@ -1615,122 +1592,6 @@ function trim(str) {
 }
 ```
 
-## 四十四、位运算符
 
-### 1.& 按位与
-
-&是二元运算符，它以特定的方式的方式组合操作数中对应的位，如果对应的位都为1，那么结果就是1， 如果任意一个位是0 则结果就是0。
-
-1 & 3的结果为1
-
-那我们来看看他是怎么运行的
-
-1的二进制表示为 0 0 0 0 0 0 1
-
-3的二进制表示为 0 0 0 0 0 1 1
-
-根据 & 的规则 得到的结果为 0 0 0 0 0 0 0 1,十进制表示就是1
-
-### 2.| 按位或
-
-|运算符跟&的区别在于如果对应的位中任一个操作数为1 那么结果就是1。
-
-1的二进制表示为 0 0 0 0 0 0 1
-
-3的二进制表示为 0 0 0 0 0 1 1
-
-所以 1 | 3的结果为3
-
-### 3.^ 按位异或
-
-^运算符跟|类似，但有一点不同的是 如果两个操作位都为1的话，结果产生0。
-
-1的二进制表示为 0 0 0 0 0 0 1
-
-3的二进制表示为 0 0 0 0 0 1 1
-
-所以 1 ^ 3的结果为2
-
-### 4.~ 按位非
-
-~运算符是对位求反，1变0,0变1，也就是求二进制的反码
-
-1的二进制表示为 0 0 0 0 0 0 1
-
-所以 ~1 的结果是-2
-
-### 5.>> 右移
-
-\>>运算符使指定值的二进制所有位都右移规定的次数，对于其移动规则只需记住符号位不变，左边补上符号位即按二进制形式把所有的数字向右移动对应的位数，低位移出(舍弃)，高位的空位补符号位，即正数补零，负数补1。
-
-1的二进制表示为 0 0 0 0 0 0 1
-
-所以 1>>1的结果为0
-
-### 6.<< 左移
-
-<<运算符使指定值的二进制所有位都左移规定的次数，对于其移动规则只需记住丢弃最高位，0补最低位即按二进制形式把所有的数字向左移动对应的位数，高位移出(舍弃)，低位的空位补零。
-
-1的二进制表示为 0 0 0 0 0 0 1
-
-所以 1<<1的结果为2 
-
-### 7.>>> 无符号右移
-
-\>>>运算符忽略了符号位扩展，0补最高位，但是只是对32位和64位的值有意义。
-
-### 8.位运算符在js中的妙用：
-
-#### 1、使用&运算符判断一个数的奇偶
-
-偶数 & 1 = 0
-
-奇数 & 1 = 1
-
-那么0&1=0,1&1=1
-
-#### 2、使用~~，>>,<<,>>>,|来取整
-
-~~3.14 = 3
-
-3.14 >> 0 = 3
-
-3.14 << 0 = 3 
-
-3.14 | 0 = 3
-
-3.14 >>> 0 = 3(>>>不可对负数取整)
-
-注意：~~-3.14 = -3 其它的一样
-
-#### 3、使用<<,>>来计算乘除
-
-乘法：
-
-1*2 = 2
-
-1<<1 = 1(2/2的一次方)
-
-#### 4、利用^来完成比较两个数是否相等
-
-1 ^ 1 = 0
-
-1 ^ 非1数 ！=0
-
-所以同一个数……同一个数等于0，否则不等于0
-
-#### 5、使用^来完成值交换
-
-a = 1
-
-b = 2
-
-a ^= b
-
-b ^= a
-
-a ^= b
-
-结果a=2，b=1
 
 <Valine></Valine>
