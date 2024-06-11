@@ -176,6 +176,14 @@ const changeWinState = (operate: string): void => {
 </script>
 ```
 
+### 8.Cannot find module 'builder-util-runtime'
+
+`electron-updater`自动升级报错
+
+![builder-util-runtime](/blog/workingDiary/electron/builder-util-runtime.png)
+
+因为项目使用 `pnpm` 安装依赖，打完包后有些资源找不到，导致这种很奇怪的报错，改为npm安装
+
 ## 三.github Action问题
 
 [github文档](https://docs.github.com/zh/actions/quickstart)

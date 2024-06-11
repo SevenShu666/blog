@@ -217,7 +217,7 @@ Promise.resolve().then(() => {
 输出：
 
 ~~~
-then:  Error: error
+res Error: error
 ~~~
 
 返回的`error`会被包装成`Promise.resolve(new Error('error'))`，会被下一个`then`捕获
