@@ -666,7 +666,7 @@ const p1 = new Promise((resolve) => {
   resolve('resovle1');
   resolve('resolve2');
 }).then(res => {
-  console.log(res)  // resolve1
+  console.log(res)
   setTimeout(() => {
     console.log(p1)
   }, 1000)
@@ -684,7 +684,7 @@ timer1
 Promise { undefined }
 ~~~
 
-`then`作为上一个`Promise`没有返回值，所以`finally`和`console.log(p1)`输出`undefined`
+`then`作为上一个`Promise`没有返回值，所以`console.log(p1)`输出`undefined`，状态不会传入`finally`所以res为`undefined`
 
 ### 24.代码输出
 
@@ -944,6 +944,7 @@ obj.say.apply(anotherObj)
 输出：
 
 ~~~
+10
 10
 ~~~
 
