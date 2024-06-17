@@ -1217,7 +1217,7 @@ var x = a(5)，这一步将x设置为window，因此window.x为undefined
 
 ### 13.代码输出
 
-~~~
+~~~js
 function foo(something){
     this.a = something
 }
@@ -1392,8 +1392,7 @@ fn2
 
 ### 5.代码输出
 
-~~~
-// 不会执行
+~~~js
 function a() {
     var temp = 10;
     function b() {
@@ -1423,7 +1422,7 @@ temp is not defined
 
 ### 6.代码输出
 
-~~~
+~~~js
 var a = 3;
 function c() {
   console.log(a);
