@@ -20,6 +20,7 @@ const config = {
       { text: "node", link: "/node/" },
       { text: "算法", link: "/arithmetic/" },
       { text: "electron", link: "/electron/" },
+      { text: "github", link: "https://github.com/starrysky-future" },
       { text: "工具", items: tools },
       { text: "杂项", link: "/miscellany/" },
       { text: "工作日记", link: "/workingDiary/" },
