@@ -32,6 +32,7 @@ const monotoneStackChildren = getFile(
   "MonotoneStack/"
 );
 const sortChildren = getFile("../../arithmetic/Sort", "Sort/");
+const arrayChildren = getFile("../../arithmetic/Array", "Array/");
 
 const arithmetic = [
   "",
@@ -46,6 +47,10 @@ const arithmetic = [
   {
     title: "字符串",
     children: stringChildren,
+  },
+  {
+    title: "数组",
+    children: arrayChildren,
   },
   {
     title: "双指针",
