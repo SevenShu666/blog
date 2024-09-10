@@ -415,4 +415,50 @@ Error: Process completed with exit code 1.
 
 升级 electron 30 后 electron-builder 需要降级到 24.9.1，这个冲突只影响 action, 本地构建没事，将electron-builder锁定24.9.1。
 
+## 四.docker问题
+
+### 1.wsl的更新下载
+
+1. 启用Windows的Linux子系统：我的电脑右键-->属性-->系统组件-->程序和功能-->启动或关闭win功能：启动虚拟机平台和适用于Linux的win子系统
+2. 安装更新wsl2：https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+### 2.通过docker-compose部署 process.env.NODE_ENV:undefined
+
+需要设置环境变量
+services:
+  app:
+    environment:
+
+​      - NODE_ENV=production
+
+## 五.Minio问题
+
+### 1.无法启动一直Adding local Minio host to 'mc' configuration
+
+账号密码长度太短，账号长度必须大于等于5，密码长度必须大于等于8位
+
+### 2.文件上传后回显403 Forbidden && AccessDenied
+
+进入 minIo 控制台，将 buckets 中 access Policy 改为 public
+
+### 3.buckets 中 access Policy 改为 public,文件还是403 Forbidden
+
+通过presignedGetObject获取的url接有参数检验，去除问好后面内容
+
+## 六.typeorm问题
+
+### 1.npm run migration:generate时会出现部分entity cannot find module问题
+
+entity内使用的绝对路径找不到模块，使用相对路径解决
+
+### 2.npm run migration:generate时出现No changes in database schema were fou. To create a new empty migration use "typeorm migration:create" command
+
+dev数据库已经建表，导出数据删表执行
+
+## 七.Nginx问题
+
+### 1.Request Entity Too Large
+
+nginx限制了上传数据的大小。打开nginx主配置文件nginx.conf，一般在/usr/local/nginx/conf/nginx.conf这个位置，找到http{}段，修改或者添加：client_max_body_size 2m;
+
 <Valine></Valine>

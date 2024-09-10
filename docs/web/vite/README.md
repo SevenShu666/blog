@@ -88,3 +88,105 @@ Dead Code
 - 代码不会被执行，不可到达
 - 代码的执行结果不会被用到
 - 代码只会影响到死变量（只写不读）
+
+## 十、vite.config
+
+### 1.修改文件输出名
+
+~~~js
+export default defineConfig(({ command, mode }) => {
+	return {
+		build: {
+			outDir: "build",
+		}
+	}
+}
+~~~
+
+### 2.生产环境去除console
+
+~~~js
+export default defineConfig(({ command, mode }) => {
+	const config = loadEnv(mode, __dirname);
+
+	return {
+		build: {
+			terserOptions: {
+              compress: {
+                drop_console: command === "build" && config.VITE_ENV === "prod",
+                drop_debugger: command === "build" && config.VITE_ENV === "prod",
+              },
+            },
+		}
+	}
+}
+~~~
+
+### 3.alias别名设置
+
+tsconfig.json
+
+~~~js
+{
+	"compilerOptions":{
+		"baseUrl": ".",
+        "paths": {
+          "@/*":["src/*"],
+          "@api/*":["src/api/*"]
+        }
+	}
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
+  	"exclude": ["node_modules","dist"]
+}
+~~~
+
+vite.config.ts
+
+~~~js
+export default defineConfig(({ command, mode }) => {
+
+	return {
+		resolve: {
+          alias: [
+            { find: "@", replacement: path.resolve(__dirname, "src") },
+            { find: "@api", replacement: path.resolve(__dirname, "src/api") },
+          ],
+        },
+	}
+}
+~~~
+
+### 4.环境变量配置
+
+package.json，在同目录先创建`.env.development`和`.env.production`文件内部变量以**VITE_**开头，如`VITE_ENV="dev"`
+
+~~~js
+"scripts": {
+    "dev": "vite --mode development",
+    "build": "tsc -b && vite build --mode production",
+    "lint": "eslint .",
+    "preview": "vite preview"
+}
+~~~
+
+### 5.开发环境代理设置
+
+~~~js
+export default defineConfig(({ command, mode }) => {
+	const config = loadEnv(mode, __dirname);
+
+	return {
+		 server: {
+          open: true,
+          proxy: {
+            "^/api": {
+              target: config.VITE_TARGET, // 从环境变量中获取
+              changeOrigin: true /* 允许跨域 */,
+              rewrite: (path) => path.replace(/^\/api/, ""),
+            },
+          },
+        }
+	}
+}
+~~~
+
