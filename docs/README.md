@@ -3,8 +3,8 @@ home: true
 heroImage: /home.jpg
 heroText: 欢迎来到小草屋
 tagline: 欲买桂花同载酒，终不似，少年游
-actionText: 学习
-actionLink: /web/html/
+actionText: 以迁移至vitepress，点击跳转
+actionLink: https://starrysky-future.github.io/starrySky-blog/
 features:
   - title: day day up
     details: 每天添一块砖，每天添一块瓦，搭一个遮风挡雨的小草屋
